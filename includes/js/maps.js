@@ -22,7 +22,7 @@ function maps_for_contact_form_7_initialize() {
         function initPlace( zoom, lat, lng ) {
             $( 'input.maps-for-wpcf7-place' ).each( function( index, element ) {
                 var map = new google.maps.Map(
-                    $( element).closest( 'p' ).next( '.maps-for-wpcf7-place-map' ).get(0),
+                    $( element ).closest( 'p' ).next( '.maps-for-wpcf7-place-map' ).get(0),
                     {
                         zoom: zoom,
                         center: new google.maps.LatLng( lat, lng ),
@@ -42,7 +42,7 @@ function maps_for_contact_form_7_initialize() {
                     select.prop( 'disabled', true );
                     select.html( '' );
                     timeoutId = setTimeout( function() {
-                        var service = service = new google.maps.places.PlacesService(map);
+                        var service = new google.maps.places.PlacesService(map);
                         var query = $( element ).val();
 
                         query += ' ' + $( element ).attr( 'data-reserved-query' );
