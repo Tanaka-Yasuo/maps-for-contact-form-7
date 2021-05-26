@@ -9,17 +9,18 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Addon of contact form 7 that adds place field.  Places are overlooked by shortcode( 'maps-for-contact-form-7' ).
+Addon of the contact form 7 that adds place field.  The places sent are overlooked by shortcode( 'maps-for-contact-form-7' ).
 
 == Description ==
 
-Map Contact Form 7 collects data with place and analyze the data with google map.
+The Maps for Contact Form 7 collects data with place and analyze the data with google map.
+
 Preparation:
-   (1) get google map api key and set the key in the settings of Map Contact Form 7. 
-   (2) set language and region in the settings of Map Contact Form 7.
-   (3) to collect data, put place field on contact form and add the contact form form-id to target forms in the settings of Map Contact Form 7.
+   (1) get google map api key and set the key in the settings of the Maps for Contact Form 7. 
+   (2) set language and region in the settings of the Maps for Contact Form 7.
+   (3) to collect data, put place field on the Contact Form 7 form and add the form to target forms in the settings of the Maps for Contact Form 7.
    (4) add the Contact Form 7 form in Pages menu in wordpress. 
-   (5) add Map Contact Form 7 shortcode( 'maps-for-contact-form-7' ) with the form id of Contact Form 7. examples is the follwoing.
+   (5) add Maps for Contact Form 7 shortcode( 'maps-for-contact-form-7' ) with the form id of Contact Form 7 form. examples is the follwoing.
    	'[maps-for-contact-form-7 form-id="the form id"]'
 
 Collect data:
@@ -27,7 +28,7 @@ Collect data:
    (2) the data is listed in 'Contact Forms List With Places' menu in admin page.
 
 Analyze data:
-   (1) access the page with Map Contact Form 7 shortcode.
+   (1) access the page with Maps for Contact Form 7 shortcode.
    (2) if radio buttons are included in the Contact Form 7 form, you can focus by radio button items. In case of that there are multiple radio buttons, it is focused by and condition.
 
 == Frequently Asked Questions ==
