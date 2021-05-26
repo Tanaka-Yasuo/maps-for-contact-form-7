@@ -113,7 +113,7 @@ class MAPS_FOR_CF7_Options {
 		}
 		?>
 		</select>
-		<input type="text" class="maps-for-contact-form-7-add-option" >
+		<input type="text" class="maps-for-contact-form-7-option-add" >
 		<button>
         		<?php _e( 'add', 'maps-for-contact-form-7' ); ?>
         	</button>
@@ -140,7 +140,7 @@ class MAPS_FOR_CF7_Options {
 		}
 		?>
 		</select>
-		<input type="text" class="maps-for-contact-form-7-add-option" >
+		<input type="text" class="maps-for-contact-form-7-option-add" >
 		<button>
         		<?php _e( 'add', 'maps-for-contact-form-7' ); ?>
         	</button>

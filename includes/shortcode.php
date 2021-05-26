@@ -70,13 +70,13 @@ class MAPS_FOR_CF7_Shortcode {
         }
 	public function html_taxonomies( $form_id, $taxonomies ) {
 		?>
-		<form class="" data-form-id="<?php echo $form_id; ?>">
+		<form class="maps-for-contact-form-7-shortcode-form" data-form-id="<?php echo $form_id; ?>">
 		<?php
 		foreach( $taxonomies as $taxonomy ) {
 			$tag = $taxonomy[ 'tag' ];
 			?>
 			<p>
-				<label>
+				<label class="maps-for-contact-form-7-shortcode-radio-label">
 				<?php echo $tag->name; ?>
 				</label>
 				<?php
@@ -107,7 +107,7 @@ class MAPS_FOR_CF7_Shortcode {
 			$raw_value = $raw_values[ $i ];
 			$label = $labels[ $i ];
 			?>
-			<input type="checkbox" name="<?php echo $name; ?>" value="<?php echo $raw_value; ?>"><?php echo $label; ?>
+			<input type="checkbox" class="maps-for-contact-form-7-shortcode-map-radio" name="<?php echo $name; ?>" value="<?php echo $raw_value; ?>"><?php echo $label; ?>
 			<br/>
 			<?php
 		}
@@ -122,13 +122,13 @@ class MAPS_FOR_CF7_Shortcode {
                 $num_ranks = $setting[ MAPS_FOR_CF7_Options::num_ranks ];
 		if ( $num_ranks < 0 ) $num_ranks = 0;
 		?>
-		<label><?php _e( 'Rank', 'maps-for-contact-form-7' ); ?></label>
+		<label class="maps-for-contact-form-7-shortcode-rank-label"><?php _e( 'Rank', 'maps-for-contact-form-7' ); ?></label>
 		<div class="block">
 		<?php
 		for ( $i = 0; $i < $num_ranks; ++$i ) {
 			$id = 'rank-' . $i;
 			?>
-			<div id="<?php echo $id; ?>"></div>
+			<div id="<?php echo $id; ?>" class="maps-for-contact-form-7-shortcode-map-rank"></div>
 			<?php
 		}
 		?>
@@ -137,8 +137,8 @@ class MAPS_FOR_CF7_Shortcode {
 	}
 	private function html_map() {
 		?>
-		<div class="block">
-			<div id="map" class="map" style="height: 600px;"></div>
+		<div class="maps-for-contact-form-7-shortcode-map-block">
+			<div id="maps-for-contact-form-7-shortcode-map" class="maps-for-contact-form-7-shortcode-map" ></div>
       		</div>
 		<?php
 	}

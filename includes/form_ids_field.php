@@ -1,5 +1,5 @@
 <p>
-	<label class="map-conatct-form-7-label">
+	<label class="map-conatct-form-7-option-label">
  		<?php _e( 'Candidate Forms', 'maps-for-contact-form-7' ); ?>
 	</label>
 	<br/>
@@ -11,7 +11,7 @@
 	</button>
 </p>
 <p>
-	<label class="map-conatct-form-7-label">
+	<label class="map-conatct-form-7-option-label">
  		<?php _e( 'Target Forms', 'maps-for-contact-form-7' ); ?>
 	</label>
 	<div id="map-conatct-form-7-form-ids">

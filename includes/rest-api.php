@@ -63,8 +63,8 @@ class MAPS_FOR_CF7_Rest {
 		$taxonomies = MAPS_FOR_CF7_ContactForm::get_taxonomies(
 			$contact_form );
 		$key_values = array();
-		if ( $lat_lng[ 'lat' ] >= self::min_lat
-			&& $lat_lng[ 'lng' ] >= self::min_lng ) {
+		if ( $lat_lng[ 'lat' ] > self::min_lat
+			&& $lat_lng[ 'lng' ] > self::min_lng ) {
 			$key_values = self::aggregate_posts_by_lat_lng(
 				$key_values,
 				$posts,
@@ -161,8 +161,8 @@ class MAPS_FOR_CF7_Rest {
 			$lng += $bounds->east - $bounds->west;
 		}
 		return array(
-			'lat' => round( $lat / 10, self::min_lat ),
-			'lng' => round( $lng / 10, self::min_lng ) );
+			'lat' => self::roundup( $lat / 10, self::min_lat ),
+			'lng' => self::roundup( $lng / 10, self::min_lng ) );
 	}
 	private static function aggregate_posts_by_lat_lng(
 		$key_values, $posts, $taxonomies, $lat_lng ) {
@@ -206,16 +206,16 @@ class MAPS_FOR_CF7_Rest {
 	}
 	private static function get_bounds( $lat, $lng, $lat_lng ) {
 		return array( 
-		    'south' => round(
+		    'south' => self::rounddown(
 			 $lat - $lat_lng[ 'lat' ] / 2,
 			 $lat_lng[ 'lat' ] ),
-		    'north' => round(
+		    'north' => self::roundup(
 			 $lat + $lat_lng[ 'lat' ] / 2
 			, $lat_lng[ 'lat' ] ),
-		    'west' => round(
+		    'west' => self::rounddown(
 			 $lng - $lat_lng[ 'lng' ] / 2,
 			 $lat_lng[ 'lng' ] ),
-		    'east' => round(
+		    'east' => self::roundup(
 			 $lng + $lat_lng[ 'lng' ] / 2,
 			 $lat_lng[ 'lng' ] ),
 		);
@@ -358,5 +358,16 @@ class MAPS_FOR_CF7_Rest {
 			$meta_query[ 'relation' ] = 'OR';
 		}
 		return $meta_query;
+	}
+	private static function rounddown( $v, $d ) {
+		$n = floor( $v / $d );
+
+		return $n * $d;
+	}
+	private static function roundup( $v, $d ) {
+		$n = floor( $v / $d );
+
+  		if ( $n * $d == $v ) return $v;
+  		return ( $n + 1 ) * $d;
 	}
 }

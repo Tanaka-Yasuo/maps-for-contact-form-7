@@ -27,7 +27,7 @@ function maps_for_contact_form_7_initialize() {
             	    east: 150.0,
           	};
 	        var map = new google.maps.Map(
-		    $( shortcodeElement ).find( '#map' ).get( 0 ),
+		    $( shortcodeElement ).find( '#maps-for-contact-form-7-shortcode-map' ).get( 0 ),
 		    {
 		        zoom: zoom,
 		        center: new google.maps.LatLng( lat, lng ),

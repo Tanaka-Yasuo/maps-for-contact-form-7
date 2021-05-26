@@ -1,9 +1,14 @@
-/* line 1, styles.scss */
-.map-conatct-form-7-label {
-  text-decoration: underline;
+/* line 3, styles.scss */
+.maps-for-contact-form-7-shortcode {
+  width: 100%;
+}
+/* line 18, styles.scss */
+.maps-for-contact-form-7-shortcode .maps-for-contact-form-7-shortcode-map {
+  width: 90%;
+  height: 50vh;
 }
 
-/* line 4, styles.scss */
-#map-conatct-form-7-forms {
-  width: 100%;
+/* line 23, styles.scss */
+.map-conatct-form-7-option-label {
+  text-decoration: underline;
 }
