@@ -67,9 +67,6 @@ class MAPS_FOR_CF7_Form_List_Table extends WP_List_Table
 		$setting = $options->get_option();
 		$form_ids = $setting[ MAPS_FOR_CF7_Options::form_ids ];
 
-foreach ( $form_ids as $form_id ) {
-error_log( "debug 0: " . $form_id );
-}
 		$items = array();
 		$contact_forms = WPCF7_ContactForm::find();
 		foreach ( $contact_forms as $contact_form ) {

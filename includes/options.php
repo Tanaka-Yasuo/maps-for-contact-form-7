@@ -126,7 +126,7 @@ class MAPS_FOR_CF7_Options {
 		<select type="text" id="<?php echo self::region_field_id; ?>" name="<?php echo self::option_name; ?>[<?php echo self::region; ?>]" value="<?php esc_attr_e( $settings[ self::region ] ) ?>" />
 		<?php
 		foreach ( self::$regions as $region ) {
-			$selected = ( $language == $settings[ self::region ] ) ?
+			$selected = ( $region == $settings[ self::region ] ) ?
 			 'selected' : '';
 			?>
 			<option value="<?php echo $region; ?>" <?php echo $selected; ?>><?php echo $region; ?></option>
