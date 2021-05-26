@@ -1,5 +1,5 @@
 jQuery( function( $ ) {
-	$( 'input.map-wpcf7-place' ).each( function( index, element ) {
+	$( 'input.maps-for-wpcf7-place' ).each( function( index, element ) {
 		var timeoutId;
 		
 		$( element ).on( 'keyup', function() {
@@ -48,3 +48,5 @@ jQuery( function( $ ) {
 	} );
 } );
 
+function maps_for_contact_form_7_initialize() {
+}

@@ -18,10 +18,10 @@ class MAPS_FOR_CF7_Rest {
                 }
 		$referer = get_home_url();
 		$context = stream_context_create(
-			 array(
-				'http' => array(
+			array(
+				'https' => array(
 					'header' => array(
-						"Referer: $referer\r\n" ) )
+						"Referer: $referer\r\n" ) ),
 			)
 		);
                 $placeURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&language=${language}&region=${region}&fields=name,formatted_address,place_id&key=${API_KEY}";

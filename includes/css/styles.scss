@@ -23,8 +23,13 @@
 .map-conatct-form-7-option-label {
 	text-decoration: underline;
 }
-input.map-wpcf7-place {
+.maps-for-wpcf7-place-map {
+	width: 90%;
+	height: 50vh;
+	visibility: hidden;
 }
-select.map-wpcf7-place {
+input.maps-for-wpcf7-place {
+}
+select.maps-for-wpcf7-place {
 }
 

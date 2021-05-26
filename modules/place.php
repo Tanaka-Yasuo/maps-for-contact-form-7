@@ -55,7 +55,7 @@ function map_wpcf7_place_form_tag_handler( $tag ) {
 		$exclusive = false;
 	}
 */
-	$class .= ' map-wpcf7-place';
+	$class .= ' maps-for-wpcf7-place';
 
 /*
 	if ( $exclusive ) {
@@ -207,14 +207,17 @@ function map_wpcf7_place_form_tag_handler( $tag ) {
 	$html .= '</select>';
 
 	$html .= '<script>';
-	$html .= 'var placeAjaxUrl = \'${admin_url( \'admin-ajax.php\')};';
+	$html .= "var placeAjaxUrl = '" . admin_url( 'admin-ajax.php' ) . "';";
 	$html .= '</script>';
+
 	$atts = wpcf7_format_atts( $atts );
 
 	$html = sprintf(
 		'<span class="wpcf7-form-control-wrap %1$s"><span %2$s>%3$s</span>%4$s</span>',
 		sanitize_html_class( $tag->name ), $atts, $html, $validation_error
 	);
+	$html .= '<div class="maps-for-wpcf7-place-map"/>';
+	$html .= '</div>';
 
 	return $html;
 }
