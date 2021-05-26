@@ -99,14 +99,16 @@ class MAPS_FOR_CF7_Options {
 		<select type="text" id="<?php echo self::language_field_id; ?>" name="<?php echo self::option_name; ?>[<?php echo self::language; ?>]" value="<?php esc_attr_e( $settings[ self::language ] ) ?>" />
 		<?php
 		foreach ( self::$languages as $language ) {
+			$selected = ( $language == $settings[ self::language ] ) ?
+			'selected' : '';
 			?>
-			<option value="<?php echo $language; ?>"><?php echo $language; ?></option>
+			<option value="<?php echo $language; ?>" <?php echo $selected; ?>><?php echo $language; ?></option>
 			<?php
 		}
 		$language = $settings[ self::language ];
 		if ( !in_array( $language, self::$languages ) ) {
 			?>
-			<option value="<?php echo $language; ?>"><?php echo $language; ?></option>
+			<option value="<?php echo $language; ?>" selected><?php echo $language; ?></option>
 			<?php
 		}
 		?>
@@ -124,14 +126,16 @@ class MAPS_FOR_CF7_Options {
 		<select type="text" id="<?php echo self::region_field_id; ?>" name="<?php echo self::option_name; ?>[<?php echo self::region; ?>]" value="<?php esc_attr_e( $settings[ self::region ] ) ?>" />
 		<?php
 		foreach ( self::$regions as $region ) {
+			$selected = ( $language == $settings[ self::region ] ) ?
+			 'selected' : '';
 			?>
-			<option value="<?php echo $region; ?>"><?php echo $region; ?></option>
+			<option value="<?php echo $region; ?>" <?php echo $selected; ?>><?php echo $region; ?></option>
 			<?php
 		}
 		$region = $settings[ self::region ];
 		if ( !in_array( $region, self::$regions ) ) {
 			?>
-			<option value="<?php echo $region; ?>"><?php echo $region; ?></option>
+			<option value="<?php echo $region; ?>" selected><?php echo $region; ?></option>
 			<?php
 		}
 		?>

@@ -131,7 +131,8 @@ class MAPS_FOR_CF7_Rest {
 		wp_send_json( $markerInfos );
                 return;
 	}
-	public static function get_posts( $bounds, $form_id, $form, $bounds_array ) {
+	public static function get_posts(
+		$bounds, $form_id, $form, $bounds_array ) {
 		$tax_query = [];
 		foreach ( $form as $name_value ) {
 		     $tax_query = self::add_taxonomy_term( 
@@ -163,7 +164,8 @@ class MAPS_FOR_CF7_Rest {
 			'lat' => round( $lat / 10, self::min_lat ),
 			'lng' => round( $lng / 10, self::min_lng ) );
 	}
-	private static function aggregate_posts_by_lat_lng( $key_values, $posts, $taxonomies, $lat_lng ) {
+	private static function aggregate_posts_by_lat_lng(
+		$key_values, $posts, $taxonomies, $lat_lng ) {
 		foreach ( $posts as $post ) {
 			$lat = get_post_meta(
 				$post->ID(),
@@ -182,7 +184,8 @@ class MAPS_FOR_CF7_Rest {
 		}
 		return $key_values;
 	}
-	private static function aggregate_posts( $key_values, $posts, $taxonomies ) {
+	private static function aggregate_posts(
+		$key_values, $posts, $taxonomies ) {
 		foreach ( $posts as $post ) {
 			$lat = get_post_meta(
 				$post->ID(),
@@ -217,7 +220,8 @@ class MAPS_FOR_CF7_Rest {
 			 $lat_lng[ 'lng' ] ),
 		);
 	}
-	private static function insert_post_by_bounds( $key_values, $post, $taxonomies, $bounds ) {
+	private static function insert_post_by_bounds(
+		$key_values, $post, $taxonomies, $bounds ) {
 		$key = $bounds[ 'south' ] . ',' . $bounds[ 'north' ] . 'x'
 			. $bounds[ 'west' ] . ',' . $bounds[ 'east' ];
 		if ( array_key_exists( $key, $key_values ) ) {
@@ -240,7 +244,8 @@ class MAPS_FOR_CF7_Rest {
 		return $key_values;
 	}
 
-	private static function insert_post( $key_values, $post, $taxonomies, $lat, $lng ) {
+	private static function insert_post(
+		$key_values, $post, $taxonomies, $lat, $lng ) {
 		$key = get_post_meta(
 			$post->ID(),
 			MAPS_FOR_CF7_Post::meta_key_place_id,

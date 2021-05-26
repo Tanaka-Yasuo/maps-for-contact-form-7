@@ -16,8 +16,10 @@ function map_wpcf7_add_form_tag_place() {
 			'multiple-controls-container' => true,
 		)
 	);
-	add_action( 'wp_ajax_textsearch', array( 'MAPS_FOR_CF7_Rest', 'textsearch' ) );
-	add_action( 'wp_ajax_nopriv_textsearch', array( 'MAPS_FOR_CF7_Rest', 'textsearch' ) );
+	add_action( 'wp_ajax_textsearch',
+		array( 'MAPS_FOR_CF7_Rest', 'textsearch' ) );
+	add_action( 'wp_ajax_nopriv_textsearch',
+		array( 'MAPS_FOR_CF7_Rest', 'textsearch' ) );
 }
 
 
@@ -67,8 +69,9 @@ function map_wpcf7_place_form_tag_handler( $tag ) {
 	$atts['id'] = $tag->get_id_option();
 
 	if ( $validation_error ) {
-		$atts['aria-describedby'] = wpcf7_get_validation_error_reference(
-			$tag->name
+		$atts['aria-describedby']
+			= wpcf7_get_validation_error_reference(
+				$tag->name
 		);
 	}
 
@@ -230,7 +233,9 @@ function map_wpcf7_place_validation_filter( $result, $tag ) {
 	$value = isset( $_POST[$name] ) ? (array) $_POST[$name] : array();
 
 	if ( $is_required and empty( $value ) ) {
-		$result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+		$result->invalidate(
+			$tag,
+			wpcf7_get_message( 'invalid_required' ) );
 	}
 
 	return $result;

@@ -50,9 +50,11 @@ class MAPS_FOR_CF7_ContactForm {
 		foreach( $posted_data as $name => $values ) {
 			$tag = self::get_tag( $tags, $name );
 
-			switch ( $tag[ 'type' ] ) {
+			switch ( $tag[ 'basetype' ] ) {
 			case 'radio':
-				$taxonomy_name = $taxonomy->get_name( $contact_form->id(), $tag );
+				$taxonomy_name = $taxonomy->get_name(
+					$contact_form->id(),
+					$tag );
 				$terms = array();
 				foreach( $values as $value ) {
 					$terms[] = $value;
@@ -62,7 +64,6 @@ class MAPS_FOR_CF7_ContactForm {
 					'terms' => $terms );
 				break;
 			case 'place':
-			case 'place*':
 				$place = explode( ',', $values[ 0 ] );
 				break;
 			default:
@@ -80,9 +81,11 @@ class MAPS_FOR_CF7_ContactForm {
 		$taxonomies = array();
 		$tags = $contact_form->scan_form_tags();
 		foreach( $tags as $tag ) {
-			switch ( $tag[ 'type' ] ) {
+			switch ( $tag[ 'basetype' ] ) {
 			case 'radio':
-				$taxonomies[] = $taxonomy->get_name( $contact_form->id(), $tag );
+				$taxonomies[] = $taxonomy->get_name(
+					$contact_form->id(),
+					$tag );
 				break;
 			default:
 				break;
@@ -92,9 +95,9 @@ class MAPS_FOR_CF7_ContactForm {
 	}
 	public static function has_place( $tags ) {
 		foreach ( $tags as $tag ) {
-			$type = $tag[ 'type' ];
+			$basetype = $tag[ 'basetype' ];
 
-			if ( $type == 'place' or $type == 'place*' ) {
+			if ( $basetype == 'place' ) {
 				return true;
 			}
 		}

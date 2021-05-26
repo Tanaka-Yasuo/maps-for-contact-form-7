@@ -47,7 +47,7 @@ class MAPS_FOR_CF7_Shortcode {
 		$tags = $contact_form->scan_form_tags();
 		$taxonomies = array();
                 foreach( $tags as $tag ) {
-                        switch ( $tag[ 'type' ] ) {
+                        switch ( $tag[ 'basetype' ] ) {
                         case 'radio':
                                 $taxonomy_name = MAPS_FOR_CF7_Taxonomy::get_name( $contact_form->id(), $tag );
                                 $taxonomies[] = array(
@@ -80,7 +80,7 @@ class MAPS_FOR_CF7_Shortcode {
 				<?php echo $tag->name; ?>
 				</label>
 				<?php
-                        	switch ( $tag[ 'type' ] ) {
+                        	switch ( $tag[ 'basetype' ] ) {
 				case 'radio':
 					$this->html_tag_radio( $form_id, $taxonomy );
 					break;
@@ -175,7 +175,7 @@ class MAPS_FOR_CF7_Shortcode {
                 $assets = wp_parse_args(
                         $assets,
                         array(
-                                'src' => "https://maps.googleapis.com/maps/api/js?key={$api_key}&libraries=places&callback=map_contact_form_7_initialize",
+                                'src' => "https://maps.googleapis.com/maps/api/js?key={$api_key}&libraries=places&callback=maps_for_contact_form_7_initialize",
                                 'dependencies' => array(),
                                 'version' => MAPS_FOR_CF7_VERSION,
                                 'in_footer' => ( 'header' !== wpcf7_load_js() ),

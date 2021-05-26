@@ -1,6 +1,6 @@
-function map_contact_form_7_initialize() {
+function maps_for_contact_form_7_initialize() {
     jQuery( function($) { 
-        // code of map_contact_form_7_initialize
+        // code of maps_for_contact_form_7_initialize
         if (navigator.geolocation) {
 	    // 現在地を取得
 	    navigator.geolocation.getCurrentPosition(
@@ -15,7 +15,7 @@ function map_contact_form_7_initialize() {
 	    initMap( 6, 35.709984, 139.810703 );
         }
 
-        // functions in map_contact_form_7_initialize
+        // functions in maps_for_contact_form_7_initialize
         function initMap( zoom, lat, lng ) {
 	    $( '.maps-for-contact-form-7-shortcode' ).each( function( index, shortcodeElement ) {
                 var markers = [];

@@ -32,7 +32,8 @@ class MAPS_FOR_CF7_Form_List_Table extends WP_List_Table
 	}
 	
 	/**
-	 * Override the parent columns method. Defines the columns to use in your listing table
+	 * Override the parent columns method. Defines the columns to use
+	 * in your listing table
 	 *
 	 * @return Array
 	 */
@@ -66,10 +67,15 @@ class MAPS_FOR_CF7_Form_List_Table extends WP_List_Table
 		$setting = $options->get_option();
 		$form_ids = $setting[ MAPS_FOR_CF7_Options::form_ids ];
 
+foreach ( $form_ids as $form_id ) {
+error_log( "debug 0: " . $form_id );
+}
 		$items = array();
 		$contact_forms = WPCF7_ContactForm::find();
 		foreach ( $contact_forms as $contact_form ) {
-			if ( !MAPS_FOR_CF7_ContactForm::in_form_ids( $form_ids, $contact_form ) ) {
+			if ( !MAPS_FOR_CF7_ContactForm::in_form_ids(
+				$form_ids,
+				$contact_form ) ) {
 				continue;
 			}
 			$form_id = $contact_form->id();
@@ -81,7 +87,7 @@ class MAPS_FOR_CF7_Form_List_Table extends WP_List_Table
 			$link  = "<a class='row-title' href=admin.php?page=$menu_slug&form-id=$form_id>%s</a>";
 
 			$items[] = array(
-				'name' => sprintf( $link, urldecode( $contact_form->name() ) ),
+				'name' => sprintf( $link, urldecode( $contact_form->title() ) ),
 				'count' => sprintf( $link, count( $posts ) ),
 			);
 		}

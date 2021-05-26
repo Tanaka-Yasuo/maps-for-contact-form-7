@@ -67,7 +67,10 @@ class MAPS_FOR_CF7_Menu_Page {
 		$ID = $post->ID();
 		$post_content = $post->post_content();
 		$posted_data = json_decode( $post_content );
-		$form_id = get_post_meta( $ID, MAPS_FOR_CF7_Post::meta_key_form_id );
+		$form_id = get_post_meta(
+			$ID,
+			MAPS_FOR_CF7_Post::meta_key_form_id,
+			true );
 		$contact_forms = WPCF7_ContactForm::find( array(
 			'p' => $form_id
 		) );
@@ -75,13 +78,16 @@ class MAPS_FOR_CF7_Menu_Page {
 		$tags = $contact_form->scan_form_tags();
 		?>
 		<div class="wrap">
-		<h3><?php echo urldecode( $contact_form->name() ); ?><h3>
+		<h3><?php echo urldecode( $contact_form->title() ); ?><h3>
 		<?php
+foreach ( $tags as $tag ) {
+}
 		foreach( $posted_data as $name => $values ) {
-			$tag = MAPS_FOR_CF7_ContactForm::get_tag( $tags, $name );
-			switch ( $tag[ 'type' ] ) {
+			$tag = MAPS_FOR_CF7_ContactForm::get_tag(
+				$tags,
+				$name );
+			switch ( $tag[ 'basetype' ] ) {
 			case 'place':
-			case 'place*':
 				$place = explode( ',', $values[ 0 ] );
 				$value = urldecode( $place[ 1 ] )
 					. '(' . urldecode( $values[ 0 ] ) . ')';

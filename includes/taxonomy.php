@@ -49,7 +49,7 @@ class MAPS_FOR_CF7_Taxonomy {
 	}
 	private function register_taxonomies_from_tags( $id, $tags ) {
 		foreach ( $tags as $tag ) {
-			switch ( $tag[ 'type' ] ) {
+			switch ( $tag[ 'basetype' ] ) {
 			case 'radio':
 				break;
 			default:

@@ -23,7 +23,8 @@ class MAPS_FOR_CF7_Post {
 			)
 		);
 	}
-	public static function insert_post( $conatct_form, $place, $posted_data, $taxonomies ) {
+	public static function insert_post(
+		$conatct_form, $place, $posted_data, $taxonomies ) {
 		$post_id = wp_insert_post(
                         array(
                                 'post_content' => json_encode( $posted_data, JSON_UNESCAPED_UNICODE ),

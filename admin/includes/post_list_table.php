@@ -12,8 +12,8 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 		$this->form_id = $form_id;
 		parent::__construct(
 			array(
-				'singular' => 'map_contact_form',
-				'plural'   => 'map_contact_forms',
+				'singular' => 'maps_for_contact_form-7',
+				'plural'   => 'maps_for_contact_form-7s',
 				'ajax'     => false
 			)
 		);
@@ -25,7 +25,8 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 	 */
 	public function prepare_items()
 	{
-		$search = empty( $_REQUEST['s'] ) ? false :  esc_sql( $_REQUEST['s'] );
+		$search = empty( $_REQUEST['s'] ) ?
+			false :  esc_sql( $_REQUEST['s'] );
 		$this->process_bulk_action();
 
 		$columns  = $this->get_columns();
@@ -52,7 +53,8 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 	}
 	
 	/**
-	 * Override the parent columns method. Defines the columns to use in your listing table
+	 * Override the parent columns method. Defines the columns to use
+	 * in your listing table
 	 *
 	 * @return Array
 	 */
@@ -118,7 +120,10 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 			$post_id = $post->id();
 			$post_content = $post->post_content();
 			$posted_data = json_decode( $post_content );
-			$form_id = get_post_meta( $post_id, MAPS_FOR_CF7_Post::meta_key_form_id, true );
+			$form_id = get_post_meta(
+				$post_id,
+				MAPS_FOR_CF7_Post::meta_key_form_id,
+				true );
 			$contact_forms = WPCF7_ContactForm::find( array(
 				'p' => $form_id
 			) );
@@ -126,10 +131,11 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 			$tags = $contact_form->scan_form_tags();
 			$place_name = '';
 			foreach( $posted_data as $name => $values ) {
-				$tag = MAPS_FOR_CF7_ContactForm::get_tag( $tags, $name );
-				switch ( $tag[ 'type' ] ) {
+				$tag = MAPS_FOR_CF7_ContactForm::get_tag(
+					$tags,
+					$name );
+				switch ( $tag[ 'basetype' ] ) {
 				case 'place':
-				case 'place*':
 					$place = explode( ',', $values[ 0 ] );
 					$place_name = urldecode( $place[ 1 ] );
 					break;
@@ -154,7 +160,8 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 	public function process_bulk_action(){
 		$action = $this->current_action();
 
-		$post_ids = isset( $_POST['map_contact_form'] ) ? $_POST['map_contact_form'] : array();
+		$post_ids = isset( $_POST['maps_for_contact_form_7'] ) ?
+			$_POST['maps_for_contact_form_7'] : array();
 		if ( 'delete' === $action ) {
 			foreach ($post_ids as $post_id) {
 				wp_delete_post( $post_id, true );
