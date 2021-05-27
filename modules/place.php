@@ -196,7 +196,7 @@ function map_wpcf7_place_form_tag_handler( $tag ) {
 		$html .= $item;
 	}
 */
-	$html = '<input class="' . esc_attr( $class ) . '" placeholder="' . esc_attr( __( 'Input keywords', 'maps-for-contact-form-7' ) ) . '" data-reserved-query="' . $reserved_query . '">';
+	$html = '<input type="text" class="' . esc_attr( $class ) . '" placeholder="' . esc_attr( __( 'Input keywords', 'maps-for-contact-form-7' ) ) . '" data-reserved-query="' . $reserved_query . '">';
 	$html .= '<br/>';
 
 	$select_atts = array();
