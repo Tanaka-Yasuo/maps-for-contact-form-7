@@ -169,14 +169,14 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 
                 		wp_die( 'Not valid..!!' );
             		}
-        	}
-		$post_ids = isset( $_POST['maps_for_contact_form_7'] ) ?
-			$_POST['maps_for_contact_form_7'] : array();
-		if ( 'delete' === $action ) {
-			foreach ($post_ids as $post_id) {
-				wp_delete_post( $post_id, true );
+			$post_ids = isset( $_POST['maps_for_contact_form_7'] ) ?
+				$_POST['maps_for_contact_form_7'] : array();
+			if ( 'delete' === $action ) {
+				foreach ($post_ids as $post_id) {
+					wp_delete_post( $post_id, true );
+				}
 			}
-		}
+        	}
 	}
 	/**
 	 * Define what data to show on each column of the table
