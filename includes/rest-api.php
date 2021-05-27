@@ -150,7 +150,7 @@ class MAPS_FOR_CF7_Rest {
 			'tax_query' => $tax_query,
 			'meta_query' => $meta_query,
 			'orderby' => array(
-				MAPS_FOR_CF7_Post::meta_key_place_id => 'ASC',
+				MAPS_FOR_CF7_Post::meta_key_place_lat => 'ASC',
 				MAPS_FOR_CF7_Post::meta_key_place_lng => 'ASC',
 			),
 		);
@@ -299,19 +299,19 @@ class MAPS_FOR_CF7_Rest {
 		return $value;
 	}
 	private static function divide_bounds( $bounds ) {
-		if ( $bounds->west < $bounds->west ) {
+		if ( $bounds->east < $bounds->west ) {
 			return array(
-				array( 
+				( object ) array( 
 					'south' => $bounds->south,
-					'west' => 0,
+					'west' => $bounds->east,
 					'north' => $bounds->north,
-					'east' => $bounds->east,
+					'east' => 0,
 				),
-				array(
+				( object ) array(
 					'south' => $bounds->south,
 					'west' => $bounds->west,
 					'north' => $bounds->north,
-					'east' => 0,
+					'east' => 180,
 				),
 			);
 	     	}
@@ -335,7 +335,9 @@ class MAPS_FOR_CF7_Rest {
 		$meta_query = array();
 		foreach ( $bounds_array as $bounds ) {
 			$meta_query[] = array(
+/*
 				'relation' => 'AND',
+*/
 				array(
 					'key' => MAPS_FOR_CF7_Post::meta_key_form_id,
                                 	'value' => $form_id,
@@ -346,6 +348,7 @@ class MAPS_FOR_CF7_Rest {
 						$bounds->south,
 						$bounds->north ),
 					'compare' => 'BETWEEN',
+					'type' => 'NUMERIC',
 				),
 				array(
 					'key' => MAPS_FOR_CF7_Post::meta_key_place_lng,
@@ -353,6 +356,7 @@ class MAPS_FOR_CF7_Rest {
 						$bounds->west,
 						$bounds->east ),
 					'compare' => 'BETWEEN',
+					'type' => 'NUMERIC',
 				),
 			);
 		}
