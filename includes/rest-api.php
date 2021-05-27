@@ -60,6 +60,7 @@ class MAPS_FOR_CF7_Rest {
 			$form_id,
 			$form,
 			$bounds_array );
+error_log( "debug 0: " . count( $posts ) );
 		$lat_lng = self::get_lat_lng( $bounds_array );
 
 		$taxonomies = MAPS_FOR_CF7_ContactForm::get_taxonomies(
@@ -146,6 +147,7 @@ class MAPS_FOR_CF7_Rest {
 			$tax_query[ 'relation' ] = 'AND';
 		}
 		$meta_query = self::get_meta_query( $form_id, $bounds_array );
+error_log( "debug 100: " . json_encode( $meta_query ) );
 		$args = array(
 			'tax_query' => $tax_query,
 			'meta_query' => $meta_query,
@@ -182,7 +184,9 @@ class MAPS_FOR_CF7_Rest {
 				$key_values,
 				$post,
 				$taxonomies,
-				$bounds );
+				$bounds,
+				$lat,
+				$lng );
 		}
 		return $key_values;
 	}
@@ -223,17 +227,22 @@ class MAPS_FOR_CF7_Rest {
 		);
 	}
 	private static function insert_post_by_bounds(
-		$key_values, $post, $taxonomies, $bounds ) {
+		$key_values, $post, $taxonomies, $bounds, $lat, $lng ) {
 		$key = $bounds[ 'south' ] . ',' . $bounds[ 'north' ] . 'x'
 			. $bounds[ 'west' ] . ',' . $bounds[ 'east' ];
 		if ( array_key_exists( $key, $key_values ) ) {
 			$value = $key_values[ $key ];
+			$count =  $value[ 'count' ];
+			$value[ 'lat' ]
+				= ( $value[ 'lat' ] * $count + $lat )
+				/ ( $count + 1 );
+			$value[ 'lng' ]
+				= ( $value[ 'lng' ] * $count + $lng )
+				/ ( $count + 1 );
 		} else {
 			$value = array(
-				'lat' => ( $bounds[ 'south' ]
-					+ $bounds[ 'north' ] ) / 2, 
-				'lng' => ( $bounds[ 'west' ]
-					+ $bounds[ 'east' ] ) / 2, 
+				'lat' => $lat,
+				'lng' => $lng,
 				'name' => '',
 				'count' => 0,
 				'taxonomies' => array(),
@@ -335,9 +344,7 @@ class MAPS_FOR_CF7_Rest {
 		$meta_query = array();
 		foreach ( $bounds_array as $bounds ) {
 			$meta_query[] = array(
-/*
 				'relation' => 'AND',
-*/
 				array(
 					'key' => MAPS_FOR_CF7_Post::meta_key_form_id,
                                 	'value' => $form_id,
@@ -348,7 +355,7 @@ class MAPS_FOR_CF7_Rest {
 						$bounds->south,
 						$bounds->north ),
 					'compare' => 'BETWEEN',
-					'type' => 'NUMERIC',
+					'type' => 'DECIMAL',
 				),
 				array(
 					'key' => MAPS_FOR_CF7_Post::meta_key_place_lng,
@@ -356,7 +363,7 @@ class MAPS_FOR_CF7_Rest {
 						$bounds->west,
 						$bounds->east ),
 					'compare' => 'BETWEEN',
-					'type' => 'NUMERIC',
+					'type' => 'DECIMAL',
 				),
 			);
 		}
