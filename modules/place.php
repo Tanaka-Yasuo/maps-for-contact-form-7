@@ -199,13 +199,13 @@ function map_wpcf7_place_form_tag_handler( $tag ) {
 	$html = '<input class="' . esc_attr( $class ) . '" placeholder="' . esc_attr( __( 'Input keywords', 'maps-for-contact-form-7' ) ) . '" data-reserved-query="' . $reserved_query . '">';
 	$html .= '<br/>';
 
-	$atts = array();
-        $atts['class'] = esc_attr( $class );	
-        $atts['name'] = $tag->name;
+	$select_atts = array();
+        $select_atts['class'] = esc_attr( $class );	
+        $select_atts['name'] = $tag->name;
 
-	$atts = wpcf7_format_atts( $atts );
+	$select_atts = wpcf7_format_atts( $select_atts );
 
-	$html .= sprintf( '<select %1$s>', $atts );
+	$html .= sprintf( '<select %1$s>', $select_atts );
 	$html .= '</select>';
 
 	$html .= '<script>';
