@@ -145,13 +145,10 @@ function maps_for_contact_form_7_initialize() {
 
                         resetMarkers();
 
-                        register();  
-                        setRank( shortcodeElement, map );
+                        for ( var i = 0; i < markerInfos.length; ++i ) {
+                            markerInfo = markerInfos[ i ];
 
-                        function register() {
-                            for ( var i = 0; i < markerInfos.length; ++i ) {
-                                markerInfo = markerInfos[ i ];
-
+                            function register() {
                                 var marker = new google.maps.Marker( {
                                     map: map,
                                     position: new google.maps.LatLng( markerInfo.lat, markerInfo.lng ),
@@ -173,7 +170,9 @@ function maps_for_contact_form_7_initialize() {
 					800 );
                                 });
                             }
+			    register();
                         }
+                        setRank( shortcodeElement, map );
                     } )
                     .fail( function( jqXHR, textStatus, errorThrown ) {
                     } );
