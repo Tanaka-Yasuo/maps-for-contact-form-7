@@ -60,7 +60,6 @@ class MAPS_FOR_CF7_Rest {
 			$form_id,
 			$form,
 			$bounds_array );
-error_log( "debug 0: " . count( $posts ) );
 		$lat_lng = self::get_lat_lng( $bounds_array );
 
 		$taxonomies = MAPS_FOR_CF7_ContactForm::get_taxonomies(
@@ -147,7 +146,6 @@ error_log( "debug 0: " . count( $posts ) );
 			$tax_query[ 'relation' ] = 'AND';
 		}
 		$meta_query = self::get_meta_query( $form_id, $bounds_array );
-error_log( "debug 100: " . json_encode( $meta_query ) );
 		$args = array(
 			'tax_query' => $tax_query,
 			'meta_query' => $meta_query,
