@@ -1,18 +1,18 @@
 <p>
 	<label class="map-conatct-form-7-option-label">
- 		<?php _e( 'Candidate Forms', 'maps-for-contact-form-7' ); ?>
+ 		<?php echo esc_html( __( 'Candidate Forms', 'maps-for-contact-form-7' ) ); ?>
 	</label>
 	<br/>
 	<select id="map-conatct-form-7-forms">
 	</select>
 	<br/>
 	<button id="map-conatct-form-7-form-ids-add">
- 	<?php _e( 'add', 'maps-for-contact-form-7' ); ?>
+ 	<?php echo esc_html( __( 'add', 'maps-for-contact-form-7' ) ); ?>
 	</button>
 </p>
 <p>
 	<label class="map-conatct-form-7-option-label">
- 		<?php _e( 'Target Forms', 'maps-for-contact-form-7' ); ?>
+ 		<?php echo esc_html(  __( 'Target Forms', 'maps-for-contact-form-7' ) ); ?>
 	</label>
 	<div id="map-conatct-form-7-form-ids">
 	</div>
@@ -61,7 +61,7 @@
 		postForms.forEach( function( form ) {
 		     html += '<label>' + form.title + '</label>';
                      html += '<button class="map-conatct-form-7-post-remove" style="margin: 0.5em;">';
-		     html += "<?php _e( 'remove', 'maps-for-contact-form-7' ); ?>";
+		     html += "<?php echo esc_html( __( 'remove', 'maps-for-contact-form-7' ) ); ?>";
                      html += '</button>';
 		     html += '<input type="hidden" value="' + form.id + '" name="<?php echo self::option_name; ?>[<?php echo self::form_ids; ?>][]" >';
                      html += '</input>';

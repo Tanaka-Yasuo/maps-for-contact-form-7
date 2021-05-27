@@ -30,8 +30,8 @@ class MAPS_FOR_CF7_Taxonomy {
 		$manager = WPCF7_FormTagsManager::get_instance();
 		$options = MAPS_FOR_CF7_Options::get_instance();
 
-		$setting = $options->get_option();
-		$form_ids = $setting[ MAPS_FOR_CF7_Options::form_ids ];
+		$settings = $options->get_option();
+		$form_ids = $settings[ MAPS_FOR_CF7_Options::form_ids ];
 
 		$contact_forms = WPCF7_ContactForm::find();
 		foreach ( $contact_forms as $contact_form ) {

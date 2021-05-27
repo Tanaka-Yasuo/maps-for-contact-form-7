@@ -16,10 +16,12 @@ function map_wpcf7_add_form_tag_place() {
 			'multiple-controls-container' => true,
 		)
 	);
+/*
 	add_action( 'wp_ajax_textsearch',
 		array( 'MAPS_FOR_CF7_Rest', 'textsearch' ) );
 	add_action( 'wp_ajax_nopriv_textsearch',
 		array( 'MAPS_FOR_CF7_Rest', 'textsearch' ) );
+*/
 }
 
 
@@ -194,7 +196,7 @@ function map_wpcf7_place_form_tag_handler( $tag ) {
 		$html .= $item;
 	}
 */
-	$html = '<input class="' . esc_attr( $class ) . '" placeholder="' . esc_html( __( 'Input keywords', 'maps-for-contact-form-7' ) ) . '" data-reserved-query="' . $reserved_query . '">';
+	$html = '<input class="' . esc_attr( $class ) . '" placeholder="' . esc_attr( __( 'Input keywords', 'maps-for-contact-form-7' ) ) . '" data-reserved-query="' . $reserved_query . '">';
 	$html .= '<br/>';
 
 	$atts = array();

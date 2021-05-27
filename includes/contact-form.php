@@ -33,8 +33,8 @@ class MAPS_FOR_CF7_ContactForm {
 		}
 		$options = MAPS_FOR_CF7_Options::get_instance();
 
-                $setting = $options->get_option();
-		$form_ids = $setting[ MAPS_FOR_CF7_Options::form_ids ];
+                $settings = $options->get_option();
+		$form_ids = $settings[ MAPS_FOR_CF7_Options::form_ids ];
 
 		if ( !self::in_form_ids( $form_ids,  $contact_form) ) {
 			return;

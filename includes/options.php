@@ -108,14 +108,14 @@ class MAPS_FOR_CF7_Options {
 		$language = $settings[ self::language ];
 		if ( !in_array( $language, self::$languages ) ) {
 			?>
-			<option value="<?php echo $language; ?>" selected><?php echo $language; ?></option>
+			<option value="<?php echo esc_attr( $language ); ?>" selected><?php echo $language; ?></option>
 			<?php
 		}
 		?>
 		</select>
 		<input type="text" class="maps-for-contact-form-7-option-add" >
 		<button>
-        		<?php _e( 'add', 'maps-for-contact-form-7' ); ?>
+        		<?php echo esc_html( __( 'add', 'maps-for-contact-form-7' ) ); ?>
         	</button>
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';
@@ -135,22 +135,22 @@ class MAPS_FOR_CF7_Options {
 		$region = $settings[ self::region ];
 		if ( !in_array( $region, self::$regions ) ) {
 			?>
-			<option value="<?php echo $region; ?>" selected><?php echo $region; ?></option>
+			<option value="<?php echo esc_attr( $region ); ?>" selected><?php echo $region; ?></option>
 			<?php
 		}
 		?>
 		</select>
 		<input type="text" class="maps-for-contact-form-7-option-add" >
 		<button>
-        		<?php _e( 'add', 'maps-for-contact-form-7' ); ?>
+        		<?php echo esc_html( __( 'add', 'maps-for-contact-form-7' ) ); ?>
         	</button>
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';
 	}
 	public function output_form_ids_field() {
 		$contact_forms = WPCF7_ContactForm::find();
-		$setting = $this->get_option();
-		$form_ids = $setting[ self::form_ids ];
+		$settings = $this->get_option();
+		$form_ids = $settings[ self::form_ids ];
 		if ( empty( $form_ids ) ) $form_ids = array();
 
 		$forms = array();

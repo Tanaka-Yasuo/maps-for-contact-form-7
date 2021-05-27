@@ -12,8 +12,8 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 		$this->form_id = $form_id;
 		parent::__construct(
 			array(
-				'singular' => 'maps_for_contact_form-7',
-				'plural'   => 'maps_for_contact_form-7s',
+				'singular' => 'maps_for_contact_form_7',
+				'plural'   => 'maps_for_contact_form_7s',
 				'ajax'     => false
 			)
 		);
@@ -116,6 +116,7 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 			'meta_key' => MAPS_FOR_CF7_Post::meta_key_form_id,
 			'meta_value' => $form_id,
 		) );
+		$items = array();
 		foreach ( $posts as $post ) {
 			$post_id = $post->id();
 			$post_content = $post->post_content();
@@ -145,13 +146,13 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 			}
 			$link  = "<a class='row-title' href=admin.php?page=$menu_slug&post-id=$post_id>%s</a>";
 
-			$data[] = array(
+			$items[] = array(
 				'place_name' => sprintf( $link, $place_name ),
-				'post_content' => sprintf( $link, urldecode( $post_content ) ),
+				'post_content' => sprintf( $link, esc_html( urldecode( $post_content ) ) ),
 				'post_id' => $post_id,
 			);
 		}
-	   	return $data;
+	   	return $items;
 	}
 	/**
 	 * Define bulk action
@@ -160,6 +161,15 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 	public function process_bulk_action(){
 		$action = $this->current_action();
 
+		if ( isset( $_POST['_wpnonce'] ) && ! empty( $_POST['_wpnonce'] ) ) {
+			$nonce = filter_input( INPUT_POST, '_wpnonce', FILTER_SANITIZE_STRING );
+            		$nonce_action = 'bulk-' . $this->_args['plural'];
+
+            		if ( !wp_verify_nonce( $nonce, $nonce_action ) ){
+
+                		wp_die( 'Not valid..!!' );
+            		}
+        	}
 		$post_ids = isset( $_POST['maps_for_contact_form_7'] ) ?
 			$_POST['maps_for_contact_form_7'] : array();
 		if ( 'delete' === $action ) {

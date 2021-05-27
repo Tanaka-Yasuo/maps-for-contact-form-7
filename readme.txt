@@ -4,7 +4,7 @@ Donate link:
 Tags: cf7, contact form 7, google map
 Requires at least: 5.7.2
 Tested up to: 5.7.2
-Stable tag: 4.3
+Stable tag: 1.0.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html

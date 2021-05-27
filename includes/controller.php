@@ -7,10 +7,10 @@ add_action(
         'wp_enqueue_scripts',
 	function () {
 		$options = MAPS_FOR_CF7_Options::get_instance();
-                $setting = $options->get_option();
-                $api_key = $setting[ MAPS_FOR_CF7_Options::api_key ];
-                $language = $setting[ MAPS_FOR_CF7_Options::language ];
-                $region = $setting[ MAPS_FOR_CF7_Options::region ];
+                $settings = $options->get_option();
+                $api_key = $settings[ MAPS_FOR_CF7_Options::api_key ];
+                $language = $settings[ MAPS_FOR_CF7_Options::language ];
+                $region = $settings[ MAPS_FOR_CF7_Options::region ];
 
 		$assets = array();
                 $assets = wp_parse_args(

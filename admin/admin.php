@@ -44,7 +44,7 @@ add_filter(
 		$forms_link = sprintf(
 			'<a href="admin.php?page=%s">%s</a>',
 			$menu_slug,
-	       		__( 'Contact Forms With Place', 'maps-for-contact-form-7' ));
+	       		esc_html( __( 'Contact Forms With Place', 'maps-for-contact-form-7' ) ) );
 		array_unshift($links, $forms_link);
 		return $links;
 	}, 10, 2 );

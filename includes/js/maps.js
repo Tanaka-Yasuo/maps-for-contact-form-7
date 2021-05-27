@@ -95,8 +95,11 @@ function maps_for_contact_form_7_initialize() {
 */
                     } );
                 var timerId;
+		var openingInfoWindow = false;
 
                 map.addListener( 'idle', function() {
+		    if ( openingInfoWindow ) return;
+
                     if ( !timerId ) {
                         timerId = setTimeout( function() {
                             timerId = undefined;
@@ -163,6 +166,11 @@ function maps_for_contact_form_7_initialize() {
                                 } );
                                 google.maps.event.addListener(marker, 'click', function() {
                                     infoWindow.open(map, marker);
+				    openingInfoWindow = true;
+				    setTimeout( function() {
+					openingInfoWindow = false;
+					},
+					800 );
                                 });
                             }
                         }

@@ -23,8 +23,8 @@ class MAPS_FOR_CF7_Shortcode {
 
 		$options = MAPS_FOR_CF7_Options::get_instance();
 
-                $setting = $options->get_option();
-                $form_ids = $setting[ MAPS_FOR_CF7_Options::form_ids ];
+                $settings = $options->get_option();
+                $form_ids = $settings[ MAPS_FOR_CF7_Options::form_ids ];
 
 		$atts = shortcode_atts(
 			array(
@@ -70,14 +70,14 @@ class MAPS_FOR_CF7_Shortcode {
         }
 	public function html_taxonomies( $form_id, $taxonomies ) {
 		?>
-		<form class="maps-for-contact-form-7-shortcode-form" data-form-id="<?php echo $form_id; ?>">
+		<form class="maps-for-contact-form-7-shortcode-form" data-form-id="<?php echo esc_attr( $form_id ); ?>">
 		<?php
 		foreach( $taxonomies as $taxonomy ) {
 			$tag = $taxonomy[ 'tag' ];
 			?>
 			<p>
 				<label class="maps-for-contact-form-7-shortcode-radio-label">
-				<?php echo $tag->name; ?>
+				<?php echo esc_html( $tag->name ); ?>
 				</label>
 				<?php
                         	switch ( $tag[ 'basetype' ] ) {
@@ -107,7 +107,7 @@ class MAPS_FOR_CF7_Shortcode {
 			$raw_value = $raw_values[ $i ];
 			$label = $labels[ $i ];
 			?>
-			<input type="checkbox" class="maps-for-contact-form-7-shortcode-map-radio" name="<?php echo $name; ?>" value="<?php echo $raw_value; ?>"><?php echo $label; ?>
+			<input type="checkbox" class="maps-for-contact-form-7-shortcode-map-radio" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $raw_value ); ?>"><?php echo esc_html( $label ); ?>
 			<br/>
 			<?php
 		}
@@ -118,11 +118,11 @@ class MAPS_FOR_CF7_Shortcode {
 	private function html_rank() {
 		$options = MAPS_FOR_CF7_Options::get_instance();
 
-                $setting = $options->get_option();
-                $num_ranks = $setting[ MAPS_FOR_CF7_Options::num_ranks ];
+                $settings = $options->get_option();
+                $num_ranks = $settings[ MAPS_FOR_CF7_Options::num_ranks ];
 		if ( $num_ranks < 0 ) $num_ranks = 0;
 		?>
-		<label class="maps-for-contact-form-7-shortcode-rank-label"><?php _e( 'Rank', 'maps-for-contact-form-7' ); ?></label>
+		<label class="maps-for-contact-form-7-shortcode-rank-label"><?php echo esc_html( __( 'Rank', 'maps-for-contact-form-7' ) ); ?></label>
 		<div class="block">
 		<?php
 		for ( $i = 0; $i < $num_ranks; ++$i ) {

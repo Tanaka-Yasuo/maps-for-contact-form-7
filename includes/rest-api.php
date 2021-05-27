@@ -3,14 +3,15 @@ class MAPS_FOR_CF7_Rest {
 	const min_lat = 0.1;
 	const min_lng = 0.1;
 
+/*
 	public static function textsearch(){
                 $query = rawurlencode( $_GET[ 'query' ] );
 
                 $options = MAPS_FOR_CF7_Options::get_instance();
-                $setting = $options->get_option();
-                $API_KEY = $setting[ MAPS_FOR_CF7_Options::api_key ];
-                $language = $setting[ MAPS_FOR_CF7_Options::language ];
-                $region = $setting[ MAPS_FOR_CF7_Options::region ];
+                $settings = $options->get_option();
+                $API_KEY = $settings[ MAPS_FOR_CF7_Options::api_key ];
+                $language = $settings[ MAPS_FOR_CF7_Options::language ];
+                $region = $settings[ MAPS_FOR_CF7_Options::region ];
 
                 if ( $API_KEY === '' ) {
                         wp_send_json( array() );
@@ -39,6 +40,7 @@ class MAPS_FOR_CF7_Rest {
                 wp_send_json( array() );
                 return;
         }
+*/
 	public static function getmarkerinfos() {
 		$arg = json_decode( 
 			stripslashes ( rawurldecode( $_GET[ 'query' ] ) )
@@ -123,8 +125,8 @@ class MAPS_FOR_CF7_Rest {
                     	return 0;
 		} );
 		$options = MAPS_FOR_CF7_Options::get_instance();
-		$setting = $options->get_option();
-		$num_ranks = $setting[ MAPS_FOR_CF7_Options::num_ranks ];
+		$settings = $options->get_option();
+		$num_ranks = $settings[ MAPS_FOR_CF7_Options::num_ranks ];
 		if ( $num_ranks < 0 ) $num_ranks = 0;
 	
 		$markerInfos = array_slice( $markerInfos, 0, $num_ranks );

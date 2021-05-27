@@ -14,8 +14,8 @@ class MAPS_FOR_CF7_Form_List_Table extends WP_List_Table
 	{
 		$options = MAPS_FOR_CF7_Options::get_instance();
 
-		$setting = $options->get_option();
-		$form_ids = $setting[ MAPS_FOR_CF7_Options::form_ids ];
+		$settings = $options->get_option();
+		$form_ids = $settings[ MAPS_FOR_CF7_Options::form_ids ];
 
 		$columns	 = $this->get_columns();
 		$hidden	  = $this->get_hidden_columns();
@@ -64,8 +64,8 @@ class MAPS_FOR_CF7_Form_List_Table extends WP_List_Table
 	private function table_items()
 	{
 		$options = MAPS_FOR_CF7_Options::get_instance();
-		$setting = $options->get_option();
-		$form_ids = $setting[ MAPS_FOR_CF7_Options::form_ids ];
+		$settings = $options->get_option();
+		$form_ids = $settings[ MAPS_FOR_CF7_Options::form_ids ];
 
 		$items = array();
 		$contact_forms = WPCF7_ContactForm::find();
