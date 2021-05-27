@@ -211,16 +211,16 @@ class MAPS_FOR_CF7_Rest {
 	private static function get_bounds( $lat, $lng, $lat_lng ) {
 		return array( 
 		    'south' => self::rounddown(
-			 $lat - $lat_lng[ 'lat' ] / 2,
+			 $lat,
 			 $lat_lng[ 'lat' ] ),
 		    'north' => self::roundup(
-			 $lat + $lat_lng[ 'lat' ] / 2
-			, $lat_lng[ 'lat' ] ),
+			 $lat,
+			 $lat_lng[ 'lat' ] ),
 		    'west' => self::rounddown(
-			 $lng - $lat_lng[ 'lng' ] / 2,
+			 $lng,
 			 $lat_lng[ 'lng' ] ),
 		    'east' => self::roundup(
-			 $lng + $lat_lng[ 'lng' ] / 2,
+			 $lng,
 			 $lat_lng[ 'lng' ] ),
 		);
 	}
@@ -353,7 +353,7 @@ class MAPS_FOR_CF7_Rest {
 						$bounds->south,
 						$bounds->north ),
 					'compare' => 'BETWEEN',
-					'type' => 'DECIMAL',
+					'type' => 'DECIMAL(17,14)',
 				),
 				array(
 					'key' => MAPS_FOR_CF7_Post::meta_key_place_lng,
@@ -361,7 +361,7 @@ class MAPS_FOR_CF7_Rest {
 						$bounds->west,
 						$bounds->east ),
 					'compare' => 'BETWEEN',
-					'type' => 'DECIMAL',
+					'type' => 'DECIMAL(17,14)',
 				),
 			);
 		}
