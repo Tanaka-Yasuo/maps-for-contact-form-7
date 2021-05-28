@@ -1,6 +1,6 @@
 <?php
 
-function map_wpcf7_plugin_url( $path = '' ) {
+function maps_for_cf7_plugin_url( $path = '' ) {
         $url = plugins_url( $path, MAPS_FOR_CF7_PLUGIN );
 
         if ( is_ssl() and 'http:' == substr( $url, 0, 5 ) ) {

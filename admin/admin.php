@@ -29,7 +29,7 @@ add_action(
 	'admin_enqueue_scripts',
 	function() {
 		wp_enqueue_style( 'maps-for-contact-form-7-admin',
-			map_wpcf7_plugin_url( 'admin/css/styles.css' ),
+			maps_for_cf7_plugin_url( 'admin/css/styles.css' ),
 			array(), MAPS_FOR_CF7_VERSION, 'all'
 		);
 	},

@@ -5,11 +5,11 @@
 
 /* form_tag handler */
 
-add_action( 'wpcf7_init', 'map_wpcf7_add_form_tag_place', 10, 0 );
+add_action( 'wpcf7_init', 'maps_for_cf7_add_form_tag_place', 10, 0 );
 
-function map_wpcf7_add_form_tag_place() {
+function maps_for_cf7_add_form_tag_place() {
 	wpcf7_add_form_tag( array( 'place', 'place*' ),
-		'map_wpcf7_place_form_tag_handler',
+		'maps_for_cf7_place_form_tag_handler',
 		array(
 			'name-attr' => true,
 			'selectable-values' => true,
@@ -25,7 +25,7 @@ function map_wpcf7_add_form_tag_place() {
 }
 
 
-function map_wpcf7_place_form_tag_handler( $tag ) {
+function maps_for_cf7_place_form_tag_handler( $tag ) {
 	if ( empty( $tag->name ) ) {
 		return '';
 	}
@@ -57,7 +57,7 @@ function map_wpcf7_place_form_tag_handler( $tag ) {
 		$exclusive = false;
 	}
 */
-	$class .= ' maps-for-wpcf7-place';
+	$class .= ' maps-for-cf7-place';
 
 /*
 	if ( $exclusive ) {
@@ -218,7 +218,7 @@ function map_wpcf7_place_form_tag_handler( $tag ) {
 		'<span class="wpcf7-form-control-wrap %1$s"><span %2$s>%3$s</span>%4$s</span>',
 		sanitize_html_class( $tag->name ), $atts, $html, $validation_error
 	);
-	$html .= '<div class="maps-for-wpcf7-place-map"/>';
+	$html .= '<div class="maps-for-cf7-place-map"/>';
 	$html .= '</div>';
 
 	return $html;
@@ -228,11 +228,11 @@ function map_wpcf7_place_form_tag_handler( $tag ) {
 /* Validation filter */
 
 add_filter( 'wpcf7_validate_place',
-	'map_wpcf7_place_validation_filter', 10, 2 );
+	'maps_for_cf7_place_validation_filter', 10, 2 );
 add_filter( 'wpcf7_validate_place*',
-	'map_wpcf7_place_validation_filter', 10, 2 );
+	'maps_for_cf7_place_validation_filter', 10, 2 );
 
-function map_wpcf7_place_validation_filter( $result, $tag ) {
+function maps_for_cf7_place_validation_filter( $result, $tag ) {
 	$name = $tag->name;
 	$is_required = $tag->is_required() || 'place' == $tag->type;
 	$value = isset( $_POST[$name] ) ? (array) $_POST[$name] : array();
@@ -250,15 +250,15 @@ function map_wpcf7_place_validation_filter( $result, $tag ) {
 /* Tag generator */
 
 add_action( 'wpcf7_admin_init',
-	'map_wpcf7_add_tag_generator_place', 30, 0 );
+	'maps_for_cf7_add_tag_generator_place', 30, 0 );
 
-function map_wpcf7_add_tag_generator_place() {
+function maps_for_cf7_add_tag_generator_place() {
 	$tag_generator = WPCF7_TagGenerator::get_instance();
 	$tag_generator->add( 'place', __( 'place', 'maps-for-contact-form-7' ),
-		'map_wpcf7_tag_generator_place' );
+		'maps_for_cf7_tag_generator_place' );
 }
 
-function map_wpcf7_tag_generator_place( $contact_form, $args = '' ) {
+function maps_for_cf7_tag_generator_place( $contact_form, $args = '' ) {
 	$description = __( "Generate a form-tag for a place.", 'maps-for-contact-form-7' );
 /*
 	$desc_link = wpcf7_link( __( 'https://contactform7.com/checkboxes-radio-buttons-and-menus/', 'contact-form-7' ), __( 'Checkboxes, radio buttons and menus', 'contact-form-7' ) );

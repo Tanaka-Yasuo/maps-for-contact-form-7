@@ -18,7 +18,7 @@ class MAPS_FOR_CF7_Menu_Page {
 		add_menu_page(
 			__( 'Contact Forms With Place', 'maps-for-contact-form-7' ),
 			__( 'Contact Forms With Place', 'maps-for-contact-form-7' ),
-			'map_wpcf7_delete',
+			'maps_for_cf7_delete',
 			self::menu_slug,
 			array( $this, 'list_page' ),
 			'dashicons-list-view' );

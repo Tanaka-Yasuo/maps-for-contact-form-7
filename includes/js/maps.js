@@ -20,9 +20,9 @@ function maps_for_contact_form_7_initialize() {
 
         // functions of place field
         function initPlace( zoom, lat, lng ) {
-            $( 'input.maps-for-wpcf7-place' ).each( function( index, element ) {
+            $( 'input.maps-for-cf7-place' ).each( function( index, element ) {
                 var map = new google.maps.Map(
-                    $( element ).closest( 'p' ).next( '.maps-for-wpcf7-place-map' ).get(0),
+                    $( element ).closest( 'p' ).next( '.maps-for-cf7-place-map' ).get(0),
                     {
                         zoom: zoom,
                         center: new google.maps.LatLng( lat, lng ),

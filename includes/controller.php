@@ -40,7 +40,7 @@ add_action(
                 $assets = wp_parse_args(
                         $assets,
                         array(
-                                'src' => map_wpcf7_plugin_url( 'includes/js/maps.js' ),
+                                'src' => maps_for_cf7_plugin_url( 'includes/js/maps.js' ),
                                 'dependencies' => array( 'jquery' ),
                                 'version' => MAPS_FOR_CF7_VERSION,
                                 'in_footer' => ( 'header' !== wpcf7_load_js() ),
@@ -62,19 +62,19 @@ add_action(
 
 		wp_register_style(
                         'maps-for-contact-form-7',
-                        map_wpcf7_plugin_url( 'includes/css/styles.css' ),
+                        maps_for_cf7_plugin_url( 'includes/css/styles.css' ),
                         array(),
                         MAPS_FOR_CF7_VERSION,
                         'all'
                 );
-                map_wpcf7_enqueue_styles();
+                maps_for_cf7_enqueue_styles();
 	},
         10, 0
 );
-function map_wpcf7_enqueue_scripts() {
+function maps_for_cf7_enqueue_scripts() {
 	wp_enqueue_script( 'maps-for-contact-form-7' );
 }
-function map_wpcf7_enqueue_styles() {
+function maps_for_cf7_enqueue_styles() {
 	wp_enqueue_style( 'maps-for-contact-form-7' );
 }
 

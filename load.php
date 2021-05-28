@@ -52,7 +52,7 @@ add_action( 'plugins_loaded', function() {
 		return $shortcode->html();
 	} );
 	MAPS_FOR_CF7_Shortcode::add_action();
-	map_wpcf7_load_textdomain();
+	maps_for_cf7_load_textdomain();
 }, 11, 0 );
 
 add_action( 'init', function() {

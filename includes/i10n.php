@@ -1,7 +1,7 @@
 <?php
 
 /* 
-function map_wpcf7_l10n() {
+function maps_for_cf7_l10n() {
 	static $l10n = array();
 
 	if ( ! empty( $l10n ) ) {
@@ -34,7 +34,7 @@ function map_wpcf7_l10n() {
 	return $l10n;
 }
 
-function map_wpcf7_is_valid_locale( $locale ) {
+function maps_for_cf7_is_valid_locale( $locale ) {
 	$pattern = '/^[a-z]{2,3}(?:_[a-zA-Z_]{2,})?$/';
 	return (bool) preg_match( $pattern, $locale );
 }
@@ -64,7 +64,7 @@ function wpcf7_is_rtl( $locale = '' ) {
 }
 */
 
-function map_wpcf7_load_textdomain( $locale = '' ) {
+function maps_for_cf7_load_textdomain( $locale = '' ) {
 	static $locales = array();
 
 	if ( empty( $locales ) ) {
