@@ -1,7 +1,7 @@
 <?php
 
 class MAPS_FOR_CF7_Post {
-	const post_type = 'map-conatct-form-7';
+	const post_type = 'maps-for-cf7';
 	const meta_key_form_id = 'form_id';
 	const meta_key_place_id = 'place_id';
 	const meta_key_place_name = 'name';
@@ -18,17 +18,17 @@ class MAPS_FOR_CF7_Post {
 		register_post_type(
 			self::post_type,
 			array(
-				'label' => 'map-conatct-form-7',
+				'label' => 'maps-for-cf7',
 				'public' => false,
 			)
 		);
 	}
 	public static function insert_post(
-		$conatct_form, $place, $posted_data, $taxonomies ) {
+		$contact_form, $place, $posted_data, $taxonomies ) {
 		$post_id = wp_insert_post(
                         array(
                                 'post_content' => json_encode( $posted_data, JSON_UNESCAPED_UNICODE ),
-                                'post_type' => 'map-conatct-form-7'
+                                'post_type' => self::post_type,
                         )
                 );
                 foreach ( $taxonomies as $taxonomy ) {
@@ -40,7 +40,7 @@ class MAPS_FOR_CF7_Post {
                 update_post_meta(
                         $post_id,
                         self::meta_key_form_id,
-                        $conatct_form->id() );
+                        $contact_form->id() );
                 update_post_meta(
                         $post_id,
                         self::meta_key_place_id,

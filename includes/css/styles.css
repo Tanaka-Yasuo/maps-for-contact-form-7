@@ -1,15 +1,15 @@
 /* line 3, styles.scss */
-.maps-for-contact-form-7-shortcode {
+.maps-for-cf7-shortcode {
   width: 100%;
 }
 /* line 18, styles.scss */
-.maps-for-contact-form-7-shortcode .maps-for-contact-form-7-shortcode-map {
+.maps-for-cf7-shortcode .maps-for-cf7-shortcode-map {
   width: 90%;
   height: 50vh;
 }
 
 /* line 23, styles.scss */
-.map-conatct-form-7-option-label {
+.maps-for-cf7-option-label {
   text-decoration: underline;
 }
 

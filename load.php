@@ -80,27 +80,27 @@ register_activation_hook(
 	} );
 
 add_filter( 'pre_update_option_active_plugins', function( $active_plugins, $old_value ) {
-	$maps_for_contact_form_7_dirname = basename( dirname( __FILE__ ) );
+	$maps_for_cf7_dirname = basename( dirname( __FILE__ ) );
 	$contact_form_7_index = -1;
-	$maps_for_contact_form_7_index = -1;
+	$maps_for_cf7_index = -1;
 
 	foreach ( $active_plugins as $index => $path ) {
 		$dirname = dirname( $path );
 		if ( $dirname == 'contact-form-7' ) {
 			$contact_form_7_index = $index;
 		}
-		if ( $dirname == $maps_for_contact_form_7_dirname ) {
-			$maps_for_contact_form_7_index = $index;
-			$maps_for_contact_form_7_path = $path;
+		if ( $dirname == $maps_for_cf7_dirname ) {
+			$maps_for_cf7_index = $index;
+			$maps_for_cf7_path = $path;
 		}
 	}
-	if ( $maps_for_contact_form_7_index >= 0
+	if ( $maps_for_cf7_index >= 0
 		&& $contact_form_7_index >= 0 ) {
-		if ( $maps_for_contact_form_7_index < $contact_form_7_index ) {
+		if ( $maps_for_cf7_index < $contact_form_7_index ) {
 		     	array_splice(
 				$active_plugins,
-				$maps_for_contact_form_7_index, 1 );
-			$active_plugins[] = $maps_for_contact_form_7_path;
+				$maps_for_cf7_index, 1 );
+			$active_plugins[] = $maps_for_cf7_path;
 		}
 	}
 	return $active_plugins;

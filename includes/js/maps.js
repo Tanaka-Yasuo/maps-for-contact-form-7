@@ -72,7 +72,7 @@ function maps_for_contact_form_7_initialize() {
 
         // functions of maps_for_contact_form_7 shortcode
         function initMap( zoom, lat, lng ) {
-            $( '.maps-for-contact-form-7-shortcode' ).each( function( index, shortcodeElement ) {
+            $( '.maps-for-cf7-shortcode' ).each( function( index, shortcodeElement ) {
                 var markers = [];
 
                 var JAPAN_BOUNDS = {
@@ -82,7 +82,7 @@ function maps_for_contact_form_7_initialize() {
                         east: 150.0,
                   };
                 var map = new google.maps.Map(
-                    $( shortcodeElement ).find( '.maps-for-contact-form-7-shortcode-map' ).get( 0 ),
+                    $( shortcodeElement ).find( '.maps-for-cf7-shortcode-map' ).get( 0 ),
                     {
                         zoom: zoom,
                         center: new google.maps.LatLng( lat, lng ),

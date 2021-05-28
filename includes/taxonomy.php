@@ -13,11 +13,11 @@ class MAPS_FOR_CF7_Taxonomy {
                 return self::$instance;
         }
 	public static function get_name( $id, $tag ) {
-		return ( $id . '-' . $tag[ 'name' ] . '-map-conatct-form-7' );
+		return ( $id . '-' . $tag[ 'name' ] . '-maps-for-cf7' );
 	}
 	public static function resolve_name( $taxonomy ) {
 		$matches = array();
-		$pattern = "/\d+-([\w-]+)-map-conatct-form-7/";
+		$pattern = "/\d+-([\w-]+)-maps-for-cf7/";
 		if ( preg_match( $pattern, $taxonomy, $matches ) == 1 ) {
 			return $matches[ 1 ];
 		}

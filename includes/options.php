@@ -1,18 +1,18 @@
 <?php
 
 class MAPS_FOR_CF7_Options {
-	const option_group = 'map-conatct-form-7';
-	const option_name = 'map-conatct-form-7';
-	const section_id = 'map-conatct-form-7-section';
-	const api_key_field_id = 'map-conatct-form-7-api-key-field';
+	const option_group = 'maps-for-cf7';
+	const option_name = 'maps-for-cf7';
+	const section_id = 'maps-for-cf7-section';
+	const api_key_field_id = 'maps-for-cf7-api-key-field';
 	const api_key = 'API_KEY';
-	const language_field_id = 'map-conatct-form-7-language-field';
+	const language_field_id = 'maps-for-cf7-language-field';
 	const language = 'language';
-	const region_field_id = 'map-conatct-form-7-region-field';
+	const region_field_id = 'maps-for-cf7-region-field';
 	const region = 'region';
-	const form_ids_field_id = 'map-conatct-form-7-form-ids-field';
+	const form_ids_field_id = 'maps-for-cf7-form-ids-field';
 	const form_ids = 'form_ids';
-	const num_ranks_field_id = 'map-conatct-form-7-num_ranks-field';
+	const num_ranks_field_id = 'maps-for-cf7-num_ranks-field';
 	const num_ranks = 'num_ranks';
 
 	private static $languages = array( 'ja' );
@@ -113,9 +113,9 @@ class MAPS_FOR_CF7_Options {
 		}
 		?>
 		</select>
-		<input type="text" class="maps-for-contact-form-7-option-add" >
+		<input type="text" class="maps-for-cf7-option-add" >
 		<button>
-        		<?php echo esc_html( __( 'add', 'maps-for-contact-form-7' ) ); ?>
+        		<?php echo esc_html( __( 'add', 'maps-for-cf7' ) ); ?>
         	</button>
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';
@@ -140,9 +140,9 @@ class MAPS_FOR_CF7_Options {
 		}
 		?>
 		</select>
-		<input type="text" class="maps-for-contact-form-7-option-add" >
+		<input type="text" class="maps-for-cf7-option-add" >
 		<button>
-        		<?php echo esc_html( __( 'add', 'maps-for-contact-form-7' ) ); ?>
+        		<?php echo esc_html( __( 'add', 'maps-for-cf7' ) ); ?>
         	</button>
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';
@@ -181,7 +181,7 @@ class MAPS_FOR_CF7_Options {
                 	//権限
                 	'administrator',
                 	//設定ページのURL。options-general.php?page=sample_setup_page
-                	'maps-for-contact-form-7-settings',
+                	'maps-for-cf7-settings',
                 	//設定ページのHTMLをはき出す関数の定義
                 	array( $this, 'output' )
         	);

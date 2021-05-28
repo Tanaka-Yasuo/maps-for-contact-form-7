@@ -1,6 +1,6 @@
 <script type="text/javascript">
 jQuery( function( $ ) {
-    $( '.maps-for-contact-form-7-option-add' ).each( function( index, element ) {
+    $( '.maps-for-cf7-option-add' ).each( function( index, element ) {
 	var button = $( element ).next( 'button' );
 	
 	$( button ).on( 'click', function( e ) {
