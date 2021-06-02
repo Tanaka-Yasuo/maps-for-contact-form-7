@@ -255,7 +255,7 @@ class MAPS_FOR_CF7_Rest {
 
 	private static function insert_post(
 		$key_values, $post, $taxonomies, $lat, $lng ) {
-		$key = get_post_meta(
+		$place_id = get_post_meta(
 			$post->ID(),
 			MAPS_FOR_CF7_Post::meta_key_place_id,
 			true );
@@ -263,10 +263,11 @@ class MAPS_FOR_CF7_Rest {
 			$post->ID(),
 			MAPS_FOR_CF7_Post::meta_key_place_name,
 			true );
-		if ( array_key_exists( $key, $key_values ) ) {
-			$value = $key_values[ $key ];
+		if ( array_key_exists( $place_id, $key_values ) ) {
+			$value = $key_values[ $place_id ];
 		} else {
 			$value = array(
+				'placeId' => $place_id,
 				'lat' => $lat,
 				'lng' => $lng,
 				'name' => rawurldecode( $name ),
@@ -274,7 +275,7 @@ class MAPS_FOR_CF7_Rest {
 				'taxonomies' => array(),
 			);
 		}
-		$key_values[ $key ] = self::statistics(
+		$key_values[ $place_id ] = self::statistics(
 			$value,
 			$post,
 			$taxonomies );

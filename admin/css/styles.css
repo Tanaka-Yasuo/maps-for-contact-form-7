@@ -9,11 +9,11 @@
 }
 
 /* line 23, styles.scss */
-.maps-for-cf7-option-label {
+.maps-for-cf7-candidates-label {
   text-decoration: underline;
 }
 
-/* line 26, styles.scss */
+/* line 36, styles.scss */
 .maps-for-cf7-place-map {
   width: 90%;
   height: 0vh;

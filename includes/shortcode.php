@@ -126,7 +126,7 @@ class MAPS_FOR_CF7_Shortcode {
 		<div class="block">
 		<?php
 		for ( $i = 0; $i < $num_ranks; ++$i ) {
-			$id = 'rank-' . $i;
+			$id = 'rank-' . ( $i + 1 );
 			?>
 			<div id="<?php echo $id; ?>" class="maps-for-cf7-shortcode-map-rank"></div>
 			<?php

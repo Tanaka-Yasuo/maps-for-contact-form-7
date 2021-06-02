@@ -54,9 +54,10 @@ add_action(
                 );
 		wp_localize_script(
                         'maps-for-contact-form-7-maps',
-                        'mapsForContactForm7ShortcodeAjax',
+                        'mapsForContactForm7Shortcode',
                         array(
-                                'url' => admin_url( 'admin-ajax.php' )
+                                'ajax_url' => admin_url( 'admin-ajax.php' ),
+                                'homepage_label' => esc_html( __( 'Home Page', 'maps-for-contact-form-7' ) ),
                         ) );
                 wp_enqueue_script( 'maps-for-contact-form-7-maps' );
 

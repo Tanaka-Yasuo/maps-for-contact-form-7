@@ -31,25 +31,50 @@ function maps_for_contact_form_7_initialize() {
                 );
                 var timeoutId;
 
-                $( element ).on( 'keyup', function() {
+                $( element ).on( 'keyup', resetPlaceList );
+		$( element ).nextAll( 'select.place-type' ).on( 'change', resetPlaceList );
+
+                function resetPlaceList() {
                     if ( timeoutId ) {
                         clearTimeout( timeoutId );
                     }
                     timeoutId = undefined;
 
-                    var select = $( element ).nextAll( 'select' );
+                    var submit = $( element ).closest( 'form' ).find( 'input[type="submit"]' );
+
+                    submit.prop( 'disabled', true );
+
+                    var select = $( element ).nextAll( 'select.place' );
 
                     select.prop( 'disabled', true );
                     select.html( '' );
                     timeoutId = setTimeout( function() {
                         var service = new google.maps.places.PlacesService(map);
-                        var query = $( element ).val();
+                        var query = [];
+                        var val = $( element ).val();
+			var data_reserved_query = $( element ).attr( 'data-reserved-query' );
 
-                        query += ' ' + $( element ).attr( 'data-reserved-query' );
+			if ( val ) {
+			    query.push( val );
+			}
+			if ( data_reserved_query ) {
+			    query.push( data_reserved_query );
+			}
+			if ( query.length == 0 ) {
+                            select.prop( 'disabled', false );
+                            submit.prop( 'disabled', false );
+			    return;
+			}
+			var request = {
+                            query: query.join( ' ' ),
+			};
+
+			val = $( element ).nextAll( 'select.place-type' ).val();
+			if ( val && val != 'other' ) {
+			     request.type = val;
+			}
                         service.textSearch(
-                            {
-                                query: query,
-                            },
+			    request,
                             function ( results, status ) {
                                 if ( status == google.maps.places.PlacesServiceStatus.OK ) {
                                     var html = '';
@@ -62,11 +87,12 @@ function maps_for_contact_form_7_initialize() {
                                     select.html( html );
                                 }
                                 select.prop( 'disabled', false );
+                                submit.prop( 'disabled', false );
                             }
                         );
                     },
                     2 * 1000 );
-                } );
+                }
             } );
         }
 
@@ -133,7 +159,7 @@ function maps_for_contact_form_7_initialize() {
                     };
                     var jqXHR = $.ajax({
                         type: 'GET',
-                        url: mapsForContactForm7ShortcodeAjax.url,
+                        url: mapsForContactForm7Shortcode.ajax_url,
                         dataType: 'json',
                         data: {
                             action: 'getmarkerinfos',
@@ -185,7 +211,7 @@ function maps_for_contact_form_7_initialize() {
                     };
                     var jqXHR = $.ajax({
                         type: 'GET',
-                        url: mapsForContactForm7ShortcodeAjax.url,
+                        url: mapsForContactForm7Shortcode.ajax_url,
                         dataType: 'json',
                         data: {
                             action: 'getrank',
@@ -195,7 +221,7 @@ function maps_for_contact_form_7_initialize() {
                     .done( function( data, textStatus, jqXHR ) {
                         markerInfos = data;
 
-                        setRankMarkerInfos( shortcodeElement, markerInfos );
+                        setRankMarkerInfos( shortcodeElement, map, markerInfos );
                     } )
                     .fail( function( jqXHR, textStatus, errorThrown ) {
                     } );
@@ -210,7 +236,7 @@ function maps_for_contact_form_7_initialize() {
                           element.html( '' );
                     }
             }
-            function setRankMarkerInfos( shortcodeElement, markerInfos ) {
+            function setRankMarkerInfos( shortcodeElement, map, markerInfos ) {
                 markerInfos.sort( function( a, b ) {
                     if ( a.count < b.count ) {
                         return 1;
@@ -222,16 +248,40 @@ function maps_for_contact_form_7_initialize() {
                 resetRankMarkerInfos( shortcodeElement );
                 for ( var i = 0; i < markerInfos.length; ++i ) {
                     var markerInfo = markerInfos[ i ];
-                          var id = '#rank-' + ( i + 1 );
-                          var element = $( shortcodeElement).find( id );
+                    var id = '#rank-' + ( i + 1 );
+                    var element = $( shortcodeElement).find( id );
 
                     if ( !element ) break;
 
-                    var html = markerInfo.name + '(' + markerInfo.count + ')';
+		    function register() {
+                    	var html = '<div>'
+				+ markerInfo.name + '(' + markerInfo.count + ')'
+			+ '</div>';
 
-                    html += '<input type="hidden" name="lat" value="' + markerInfo.lat + '">';
-                    html += '<input type="hidden" name="lng" value="' + markerInfo.lng + '">';
-                    element.html( html );
+                    	html += '<input type="hidden" name="lat" value="' + markerInfo.lat + '">';
+                    	html += '<input type="hidden" name="lng" value="' + markerInfo.lng + '">';
+                    	element.html( html );
+			$( element ).find( 'div' ).on( 'click', function() {
+			     map.panTo( new google.maps.LatLng( markerInfo.lat, markerInfo.lng ) );
+			     map.setZoom( 12 );
+			} );
+                        var service = new google.maps.places.PlacesService(map);
+
+                        service.getDetails(
+			    {
+				placeId: markerInfo.placeId,
+				fields: [ 'website' ],
+			    },
+                            function ( place, status ) {
+                                if ( status == google.maps.places.PlacesServiceStatus.OK ) {
+				    if ( place.website ) {
+					$( element ).find( 'div' ).append( '<a href="' + place.website + '" target="_blank" rel="noopener">' + mapsForContactForm7Shortcode.homepage_label + '</a>' );
+				    }
+				}
+			    }
+			);
+		    }
+		    register();
                 }
             }
         }

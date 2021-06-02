@@ -87,13 +87,13 @@ class MAPS_FOR_CF7_Options {
 			self::option_group,
 			self::section_id );
 	}
-	public function output_api_key_field() {
+	public function output_api_key_field( $args ) {
 		$settings = $this->get_option();
 		?>
 		<input type="text" id="<?php echo self::api_key_field_id; ?>" name="<?php echo self::option_name; ?>[<?php echo self::api_key; ?>]" value="<?php esc_attr_e( $settings[ self::api_key ] ) ?>" />
 		<?php
 	}
-	public function output_language_field() {
+	public function output_language_field( $args ) {
 		$settings = $this->get_option();
 		?>
 		<select type="text" id="<?php echo self::language_field_id; ?>" name="<?php echo self::option_name; ?>[<?php echo self::language; ?>]" value="<?php esc_attr_e( $settings[ self::language ] ) ?>" />
@@ -120,7 +120,7 @@ class MAPS_FOR_CF7_Options {
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';
 	}
-	public function output_region_field() {
+	public function output_region_field( $args ) {
 		$settings = $this->get_option();
 		?>
 		<select type="text" id="<?php echo self::region_field_id; ?>" name="<?php echo self::option_name; ?>[<?php echo self::region; ?>]" value="<?php esc_attr_e( $settings[ self::region ] ) ?>" />
@@ -147,26 +147,37 @@ class MAPS_FOR_CF7_Options {
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';
 	}
-	public function output_form_ids_field() {
+	public function output_form_ids_field( $args ) {
 		$contact_forms = WPCF7_ContactForm::find();
 		$settings = $this->get_option();
-		$form_ids = $settings[ self::form_ids ];
-		if ( empty( $form_ids ) ) $form_ids = array();
 
-		$forms = array();
+		$name = self::option_name . '[' . self::form_ids . '][]';
+		$targets = $settings[ self::form_ids ];
+		if ( empty( $targets ) ) $targets = array();
+
+		$candidates = array();
 		foreach ( $contact_forms as $contact_form ) {
 			$tags = $contact_form->scan_form_tags();
 			if ( !MAPS_FOR_CF7_ContactForm::has_place( $tags ) ) {
 				continue;
 			}
-			$forms[] = array( 
-				'id' => $contact_form->id(),
-				'title' => $contact_form->title()
+			$candidates[] = array( 
+				'value' => $contact_form->id(),
+				'label' => $contact_form->title()
 			);
 		}
-		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/form_ids_field.php';
+		$selectValues = new MAPS_FOR_CF7_SelectValues(
+			$name,
+			$candidates,
+			$targets,
+			__( 'Candidate Forms', 'maps-for-contact-form-7' ),
+			__( 'Target Forms', 'maps-for-contact-form-7' ) );
+		$id = 'maps-for-cf7-option-form-ids';
+		echo '<div id="' . $id . '">';
+		$selectValues->html( "#{$id}" );
+		echo '</div>';
 	}
-	public function output_num_ranks_field() {
+	public function output_num_ranks_field( $args ) {
 		$settings = $this->get_option();
 		?>
 		<input type="number" id="<?php echo self::num_ranks_field_id; ?>" name="<?php echo self::option_name; ?>[<?php echo self::num_ranks; ?>]" value="<?php esc_attr_e( $settings[ self::num_ranks ] ) ?>" />

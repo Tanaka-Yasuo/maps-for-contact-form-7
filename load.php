@@ -9,6 +9,7 @@ require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/options.php';
 require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/shortcode.php';
 require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/rest-api.php';
 require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/i10n.php';
+require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/select_values.php';
 
 if ( is_admin() ) {
 	require_once MAPS_FOR_CF7_PLUGIN_DIR . '/admin/admin.php';

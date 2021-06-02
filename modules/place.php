@@ -24,7 +24,6 @@ function maps_for_cf7_add_form_tag_place() {
 */
 }
 
-
 function maps_for_cf7_place_form_tag_handler( $tag ) {
 	if ( empty( $tag->name ) ) {
 		return '';
@@ -199,8 +198,32 @@ function maps_for_cf7_place_form_tag_handler( $tag ) {
 	$html = '<input type="text" class="' . esc_attr( $class ) . '" placeholder="' . esc_attr( __( 'Input keywords', 'maps-for-contact-form-7' ) ) . '" data-reserved-query="' . $reserved_query . '">';
 	$html .= '<br/>';
 
+	$place_type_options = $tag->get_all_match_options( '/place_type_\w+/' );
+	if ( !empty( $place_type_options ) ) {
+		$len = strlen( 'place_type_' );
+		$place_types = array();
+		foreach ( $place_type_options as $place_type_option ) {
+			$place_types[] = substr( $place_type_option[ 0 ], $len );
+		}
+		$place_types[] = 'other';
+		
+		$html .= sprintf( '<span>%1$s:</span>', esc_html( __( 'Place Types', 'maps-for-contact-form-7' ) ) );
+		$select_atts = array();
+        	$select_atts['class'] = esc_attr( $class . ' place-type' );	
+
+		$select_atts = wpcf7_format_atts( $select_atts );
+
+		$html .= sprintf( '<select %1$s>', $select_atts );
+		foreach ( $place_types as $place_type ) {
+			$label = __( 'place_type_' . $place_type, 'maps-for-contact-form-7' );
+			$html .= sprintf( '<option value="%1$s">%2$s</option>', esc_attr( $place_type ), esc_html( $label ) );
+		}
+		$html .= '</select>';
+		$html .= '</br>';
+	}
+	$html .= sprintf( '<span>%1$s:</span>', esc_html( __( 'Place', 'maps-for-contact-form-7' ) ) );
 	$select_atts = array();
-        $select_atts['class'] = esc_attr( $class );	
+        $select_atts['class'] = esc_attr( $class . ' place' );	
         $select_atts['name'] = $tag->name;
 
 	$select_atts = wpcf7_format_atts( $select_atts );
@@ -253,6 +276,7 @@ add_action( 'wpcf7_admin_init',
 	'maps_for_cf7_add_tag_generator_place', 30, 0 );
 
 function maps_for_cf7_add_tag_generator_place() {
+	
 	$tag_generator = WPCF7_TagGenerator::get_instance();
 	$tag_generator->add( 'place', __( 'place', 'maps-for-contact-form-7' ),
 		'maps_for_cf7_tag_generator_place' );
@@ -291,7 +315,25 @@ function maps_for_cf7_tag_generator_place( $contact_form, $args = '' ) {
 	<td>
 		<fieldset>
 		<legend class="screen-reader-text"><?php echo esc_html( __( 'Reserved Words', 'maps-for-contact-form-7' ) ); ?></legend>
-		<input name="values" class="values" id="<?php echo esc_attr( $args['content'] . '-reserved-query' ); ?>"></input>
+		<input type="text" name="values" class="values" id="<?php echo esc_attr( $args['content'] . '-reserved-query' ); ?>"></input>
+		</fieldset>
+	</td>
+	</tr>
+
+	<tr>
+	<th scope="row"><?php echo esc_html( __( 'Place Types', 'maps-for-contact-form-7' ) ); ?></th>
+	<td>
+		<fieldset>
+		<legend class="screen-reader-text"><?php echo esc_html( __( 'Place Types', 'maps-for-contact-form-7' ) ); ?></legend>
+		<?php
+		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/modules/place_types.php';
+		foreach ( $place_types as $place_type ) {
+			?>
+			<label><input type="checkbox" name="place_type_<?php echo $place_type; ?>" class="option" id="<?php echo esc_attr( $args['content'] . '-place-type-<?php echo $place_type; ?>' ); ?>"></input>
+		<?php echo esc_html( __( 'place_type_' . $place_type, 'maps-for-contact-form-7' ) ); ?></label>
+		<?php
+		}
+		?>
 		</fieldset>
 	</td>
 	</tr>
