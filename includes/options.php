@@ -186,9 +186,9 @@ class MAPS_FOR_CF7_Options {
 	public function add_options_page() {
 		add_options_page(
 		 	//ページタイトル
-                	'設定',
+                	__( 'Settings of Maps for Contact Form 7', 'maps-for-contact-form-7' ),
                 	//設定メニューに表示されるメニュータイトル
-                	'Mapプラグインの設定',
+                	__( 'Maps for Contact Form 7', 'maps-for-contact-form-7' ),
                 	//権限
                 	'administrator',
                 	//設定ページのURL。options-general.php?page=sample_setup_page
@@ -203,8 +203,10 @@ class MAPS_FOR_CF7_Options {
 			<?php
 			require_once(ABSPATH . 'wp-admin/options-head.php');
 			?>
+			<h1><?php echo esc_html( $GLOBALS['title'] ); ?></h1>
 			<form method="post" action="options.php">
 				<?php
+				wp_title();
 				settings_fields( self::option_group );
 				// 入力項目を出力します(設定ページのslugを指定)>。
 				do_settings_sections( self::option_group );

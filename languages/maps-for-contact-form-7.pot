@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Maps for Contact Form 7 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/maps-for-contact-"
 "form-7\n"
-"POT-Creation-Date: 2021-06-02 03:35:02+00:00\n"
+"POT-Creation-Date: 2021-06-03 00:08:16+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgid "Contact Forms With Place"
 msgstr ""
 
 #: admin/includes/form_list_table.php:43 admin/includes/post_list_table.php:65
-#: modules/place.php:310
+#: modules/place.php:309
 msgid "Name"
 msgstr ""
 
@@ -64,48 +64,54 @@ msgstr ""
 msgid "remove"
 msgstr ""
 
+#: includes/options.php:189
+msgid "Settings of Maps for Contact Form 7"
+msgstr ""
+
+#. #-#-#-#-#  maps-for-contact-form-7.pot (Maps for Contact Form 7 1.0.0)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: includes/options.php:191
+msgid "Maps for Contact Form 7"
+msgstr ""
+
 #: includes/shortcode.php:125
 msgid "Rank"
 msgstr ""
 
-#: modules/place.php:199
+#: modules/place.php:198
 msgid "Input keywords"
 msgstr ""
 
-#: modules/place.php:211 modules/place.php:325 modules/place.php:328
+#: modules/place.php:210 modules/place.php:324 modules/place.php:327
 msgid "Place Types"
 msgstr ""
 
-#: modules/place.php:225
+#: modules/place.php:224
 msgid "Place"
 msgstr ""
 
-#: modules/place.php:282
+#: modules/place.php:281
 msgid "place"
 msgstr ""
 
-#: modules/place.php:287
+#: modules/place.php:286
 msgid "Generate a form-tag for a place."
 msgstr ""
 
-#: modules/place.php:300 modules/place.php:303
+#: modules/place.php:299 modules/place.php:302
 msgid "Field type"
 msgstr ""
 
-#: modules/place.php:304
+#: modules/place.php:303
 msgid "Required field"
 msgstr ""
 
-#: modules/place.php:315 modules/place.php:318
+#: modules/place.php:314 modules/place.php:317
 msgid "Reserved Words"
 msgstr ""
 
-#: modules/place.php:355
+#: modules/place.php:350
 msgid "Insert Tag"
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "Maps for Contact Form 7"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

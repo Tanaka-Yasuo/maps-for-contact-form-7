@@ -16,12 +16,6 @@ function maps_for_cf7_add_form_tag_place() {
 			'multiple-controls-container' => true,
 		)
 	);
-/*
-	add_action( 'wp_ajax_textsearch',
-		array( 'MAPS_FOR_CF7_Rest', 'textsearch' ) );
-	add_action( 'wp_ajax_nopriv_textsearch',
-		array( 'MAPS_FOR_CF7_Rest', 'textsearch' ) );
-*/
 }
 
 function maps_for_cf7_place_form_tag_handler( $tag ) {
@@ -205,7 +199,7 @@ function maps_for_cf7_place_form_tag_handler( $tag ) {
 		foreach ( $place_type_options as $place_type_option ) {
 			$place_types[] = substr( $place_type_option[ 0 ], $len );
 		}
-		$place_types[] = 'other';
+		$place_types[] = 'none';
 		
 		$html .= sprintf( '<span>%1$s:</span>', esc_html( __( 'Place Types', 'maps-for-contact-form-7' ) ) );
 		$select_atts = array();
@@ -215,8 +209,7 @@ function maps_for_cf7_place_form_tag_handler( $tag ) {
 
 		$html .= sprintf( '<select %1$s>', $select_atts );
 		foreach ( $place_types as $place_type ) {
-			$label = __( 'place_type_' . $place_type, 'maps-for-contact-form-7' );
-			$html .= sprintf( '<option value="%1$s">%2$s</option>', esc_attr( $place_type ), esc_html( $label ) );
+			$html .= sprintf( '<option value="%1$s">%2$s</option>', esc_attr( $place_type ), esc_html( maps_for_cf7_get_place_type_label( $place_type ) ) );
 		}
 		$html .= '</select>';
 		$html .= '</br>';
@@ -330,7 +323,10 @@ function maps_for_cf7_tag_generator_place( $contact_form, $args = '' ) {
 		foreach ( $place_types as $place_type ) {
 			?>
 			<label><input type="checkbox" name="place_type_<?php echo $place_type; ?>" class="option" id="<?php echo esc_attr( $args['content'] . '-place-type-<?php echo $place_type; ?>' ); ?>"></input>
-		<?php echo esc_html( __( 'place_type_' . $place_type, 'maps-for-contact-form-7' ) ); ?></label>
+			<?php
+			echo esc_html( maps_for_cf7_get_place_type_label( $place_type ) );
+			?>
+			</label>
 		<?php
 		}
 		?>
@@ -355,3 +351,13 @@ function maps_for_cf7_tag_generator_place( $contact_form, $args = '' ) {
 </div>
 <?php
 }
+
+/* Other functions */
+function maps_for_cf7_get_place_type_label( $place_type ) {
+	$label = __( 'place_type_' . $place_type, 'maps-for-contact-form-7' );
+	if ( $label == ( 'place_type_' . $place_type ) ) {
+		$label = $place_type;
+	}
+	return $label;
+}
+

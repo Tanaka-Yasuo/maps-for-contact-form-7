@@ -3,44 +3,6 @@ class MAPS_FOR_CF7_Rest {
 	const min_lat = 0.1;
 	const min_lng = 0.1;
 
-/*
-	public static function textsearch(){
-                $query = rawurlencode( $_GET[ 'query' ] );
-
-                $options = MAPS_FOR_CF7_Options::get_instance();
-                $settings = $options->get_option();
-                $API_KEY = $settings[ MAPS_FOR_CF7_Options::api_key ];
-                $language = $settings[ MAPS_FOR_CF7_Options::language ];
-                $region = $settings[ MAPS_FOR_CF7_Options::region ];
-
-                if ( $API_KEY === '' ) {
-                        wp_send_json( array() );
-                        return;
-                }
-		$referer = get_home_url();
-		$context = stream_context_create(
-			array(
-				'https' => array(
-					'header' => array(
-						"Referer: $referer\r\n" ) ),
-			)
-		);
-                $placeURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&language=${language}&region=${region}&fields=name,formatted_address,place_id&key=${API_KEY}";
-                $response = file_get_contents( $placeURL, false, $context );
-
-                if ( $response ) {
-                        $content = json_decode(
-                                $response,
-                                true );
-                        if ( $content[ 'status' ] == 'OK' ) {
-                                wp_send_json( $content[ 'results' ] );
-                                return;
-                        }
-                }
-                wp_send_json( array() );
-                return;
-        }
-*/
 	public static function getmarkerinfos() {
 		$arg = json_decode( 
 			stripslashes ( rawurldecode( $_GET[ 'query' ] ) )
@@ -127,8 +89,15 @@ class MAPS_FOR_CF7_Rest {
 		$options = MAPS_FOR_CF7_Options::get_instance();
 		$settings = $options->get_option();
 		$num_ranks = $settings[ MAPS_FOR_CF7_Options::num_ranks ];
-		if ( $num_ranks < 0 ) $num_ranks = 0;
+		if ( $num_ranks < 0 ) $num_ranks = 1;
 	
+		while ( count( $markerInfos ) > $num_ranks ) {
+			$a = $markerInfos[ $num_ranks - 1 ];
+			$b = $markerInfos[ $num_ranks ];
+
+			if ( $a[ 'count' ] != $b[ 'count' ] ) break;
+			$num_ranks += 1;
+		}
 		$markerInfos = array_slice( $markerInfos, 0, $num_ranks );
 		wp_send_json( $markerInfos );
                 return;

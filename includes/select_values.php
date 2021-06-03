@@ -21,7 +21,7 @@ class MAPS_FOR_CF7_SelectValues {
 				'label' => esc_html( $candidate[ 'label' ] ),
 			);
 		}
-		foreach ( $targets as $targets ) {
+		foreach ( $targets as $target ) {
 			$this->targets[] = esc_attr( $target );
 		}
 	}

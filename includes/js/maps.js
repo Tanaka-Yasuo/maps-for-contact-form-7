@@ -70,7 +70,7 @@ function maps_for_contact_form_7_initialize() {
 			};
 
 			val = $( element ).nextAll( 'select.place-type' ).val();
-			if ( val && val != 'other' ) {
+			if ( val && val != 'none' ) {
 			     request.type = val;
 			}
                         service.textSearch(
@@ -172,9 +172,8 @@ function maps_for_contact_form_7_initialize() {
                         resetMarkers();
 
                         for ( var i = 0; i < markerInfos.length; ++i ) {
-                            markerInfo = markerInfos[ i ];
-
                             function register() {
+                                var markerInfo = markerInfos[ i ];
                                 var marker = new google.maps.Marker( {
                                     map: map,
                                     position: new google.maps.LatLng( markerInfo.lat, markerInfo.lng ),
@@ -229,12 +228,13 @@ function maps_for_contact_form_7_initialize() {
             } );
             function resetRankMarkerInfos( shortcodeElement ) {
                 for ( var i = 0; i < 10; ++i ) {
-                          var id = '#rank-' + ( i + 1 );
-                          var element = $( shortcodeElement ).find( id );
+                    var clazz = '.rank-' + ( i + 1 );
+                    var element = $( shortcodeElement ).find( clazz );
 
-                          if ( !element ) break;
-                          element.html( '' );
-                    }
+                    if ( element.length == 0 ) break;
+                    element.html( '' );
+                }
+		$( shortcodeElement ).find( '.rank-more' ).css( 'visibility', 'hidden' );
             }
             function setRankMarkerInfos( shortcodeElement, map, markerInfos ) {
                 markerInfos.sort( function( a, b ) {
@@ -247,25 +247,29 @@ function maps_for_contact_form_7_initialize() {
                 });
                 resetRankMarkerInfos( shortcodeElement );
                 for ( var i = 0; i < markerInfos.length; ++i ) {
-                    var markerInfo = markerInfos[ i ];
-                    var id = '#rank-' + ( i + 1 );
-                    var element = $( shortcodeElement).find( id );
+                    var clazz = '.rank-' + ( i + 1 );
+                    var element = $( shortcodeElement).find( clazz );
 
-                    if ( !element ) break;
+                    if ( element.length == 0 ) {
+			$( shortcodeElement ).find( '.rank-more' ).css( 'visibility', 'visible' );
+			break;
+		    }
 
 		    function register() {
-                    	var html = '<div>'
+                    	var markerInfo = markerInfos[ i ];
+                    	var html = '<span class="maps-for-cf7-rank-label">'
 				+ markerInfo.name + '(' + markerInfo.count + ')'
-			+ '</div>';
+			+ '</span>';
 
                     	html += '<input type="hidden" name="lat" value="' + markerInfo.lat + '">';
                     	html += '<input type="hidden" name="lng" value="' + markerInfo.lng + '">';
                     	element.html( html );
-			$( element ).find( 'div' ).on( 'click', function() {
-			     map.panTo( new google.maps.LatLng( markerInfo.lat, markerInfo.lng ) );
-			     map.setZoom( 12 );
+			$( element ).find( 'span' ).on( 'click', function() {
+			    if ( map.getZoom() < 12 ) map.setZoom( 12 );
+			    map.panTo( new google.maps.LatLng( markerInfo.lat, markerInfo.lng ) );
 			} );
                         var service = new google.maps.places.PlacesService(map);
+			var elem = element;
 
                         service.getDetails(
 			    {
@@ -275,7 +279,7 @@ function maps_for_contact_form_7_initialize() {
                             function ( place, status ) {
                                 if ( status == google.maps.places.PlacesServiceStatus.OK ) {
 				    if ( place.website ) {
-					$( element ).find( 'div' ).append( '<a href="' + place.website + '" target="_blank" rel="noopener">' + mapsForContactForm7Shortcode.homepage_label + '</a>' );
+					$( elem ).append( '<a href="' + place.website + '" target="_blank" rel="noopener" class="maps-for-cf7-rank-website">' + mapsForContactForm7Shortcode.homepage_label + '</a>' );
 				    }
 				}
 			    }

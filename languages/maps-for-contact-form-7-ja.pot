@@ -64,6 +64,10 @@ msgstr "対象フォーム"
 msgid "remove"
 msgstr "削除"
 
+#: includes/options.php:189
+msgid "Settings of Maps for Contact Form 7"
+msgstr "Maps for Contact Form 7の設定"
+
 #: includes/shortcode.php:125
 msgid "Rank"
 msgstr "ランク"
@@ -121,8 +125,8 @@ msgid "place_type_university"
 msgstr "大学"
 
 #: modules/place.php:338
-msgid "place_type_other"
-msgstr "その他"
+msgid "place_type_none"
+msgstr "指定なし"
 
 #: modules/place.php:287
 msgid "Generate a form-tag for a place."

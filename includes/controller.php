@@ -37,10 +37,13 @@ add_action(
                 wp_enqueue_script( 'maps-for-contact-form-7-places' );
 		
 		$assets = array();
+		$template_name = 'includes/js/maps.js';
+		$template = maps_for_cf7_plugin_url( $template_name ); 
+		$src = apply_filters( 'maps_for_cf7_get_template', $template, $template_name );
                 $assets = wp_parse_args(
                         $assets,
                         array(
-                                'src' => maps_for_cf7_plugin_url( 'includes/js/maps.js' ),
+                                'src' => $src,
                                 'dependencies' => array( 'jquery' ),
                                 'version' => MAPS_FOR_CF7_VERSION,
                                 'in_footer' => ( 'header' !== wpcf7_load_js() ),
