@@ -70,14 +70,14 @@ class MAPS_FOR_CF7_Shortcode {
         }
 	public function html_taxonomies( $form_id, $taxonomies ) {
 		?>
-		<form class="maps-for-cf7-shortcode-form" data-form-id="<?php echo esc_attr( $form_id ); ?>">
+		<form class="maps-for-cf7-shortcode-form" data-form-id="<?php esc_attr_e( $form_id ); ?>">
 		<?php
 		foreach( $taxonomies as $taxonomy ) {
 			$tag = $taxonomy[ 'tag' ];
 			?>
 			<p>
 				<label class="maps-for-cf7-shortcode-radio-label">
-				<?php echo esc_html( $tag->name ); ?>
+				<?php esc_html_e( $tag->name ); ?>
 				</label>
 				<?php
                         	switch ( $tag[ 'basetype' ] ) {
@@ -107,7 +107,7 @@ class MAPS_FOR_CF7_Shortcode {
 			$raw_value = $raw_values[ $i ];
 			$label = $labels[ $i ];
 			?>
-			<input type="checkbox" class="maps-for-cf7-shortcode-map-radio" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $raw_value ); ?>"><?php echo esc_html( $label ); ?>
+			<input type="checkbox" class="maps-for-cf7-shortcode-map-radio" name="<?php esc_attr_e( $name ); ?>" value="<?php esc_attr_e( $raw_value ); ?>"><?php esc_html_e( $label ); ?>
 			<br/>
 			<?php
 		}
@@ -122,7 +122,7 @@ class MAPS_FOR_CF7_Shortcode {
                 $num_ranks = $settings[ MAPS_FOR_CF7_Options::num_ranks ];
 		if ( $num_ranks < 0 ) $num_ranks = 0;
 		?>
-		<label class="maps-for-cf7-shortcode-rank-label"><?php echo esc_html( __( 'Rank', 'maps-for-contact-form-7' ) ); ?></label>
+		<label class="maps-for-cf7-shortcode-rank-label"><?php esc_html_e( __( 'Rank', 'maps-for-contact-form-7' ) ); ?></label>
 		<div class="block">
 		<?php
 		for ( $i = 0; $i < $num_ranks; ++$i ) {

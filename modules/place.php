@@ -289,42 +289,42 @@ function maps_for_cf7_tag_generator_place( $contact_form, $args = '' ) {
 <table class="form-table">
 <tbody>
 	<tr>
-	<th scope="row"><?php echo esc_html( __( 'Field type', 'contact-form-7' ) ); ?></th>
+	<th scope="row"><?php esc_html_e( __( 'Field type', 'contact-form-7' ) ); ?></th>
 	<td>
 		<fieldset>
-		<legend class="screen-reader-text"><?php echo esc_html( __( 'Field type', 'contact-form-7' ) ); ?></legend>
-		<label><input type="checkbox" name="required" /> <?php echo esc_html( __( 'Required field', 'contact-form-7' ) ); ?></label>
+		<legend class="screen-reader-text"><?php esc_html_e( __( 'Field type', 'contact-form-7' ) ); ?></legend>
+		<label><input type="checkbox" name="required" /> <?php esc_html_e( __( 'Required field', 'contact-form-7' ) ); ?></label>
 		</fieldset>
 	</td>
 	</tr>
 
 	<tr>
-	<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-name' ); ?>"><?php echo esc_html( __( 'Name', 'contact-form-7' ) ); ?></label></th>
-	<td><input type="text" name="name" class="tg-name oneline" id="<?php echo esc_attr( $args['content'] . '-name' ); ?>" /></td>
+	<th scope="row"><label for="<?php esc_attr_e( $args['content'] . '-name' ); ?>"><?php esc_html_e( __( 'Name', 'contact-form-7' ) ); ?></label></th>
+	<td><input type="text" name="name" class="tg-name oneline" id="<?php esc_attr_e( $args['content'] . '-name' ); ?>" /></td>
 	</tr>
 
 	<tr>
-	<th scope="row"><?php echo esc_html( __( 'Reserved Words', 'maps-for-contact-form-7' ) ); ?></th>
+	<th scope="row"><?php esc_html_e( __( 'Reserved Words', 'maps-for-contact-form-7' ) ); ?></th>
 	<td>
 		<fieldset>
-		<legend class="screen-reader-text"><?php echo esc_html( __( 'Reserved Words', 'maps-for-contact-form-7' ) ); ?></legend>
-		<input type="text" name="values" class="values" id="<?php echo esc_attr( $args['content'] . '-reserved-query' ); ?>"></input>
+		<legend class="screen-reader-text"><?php esc_html_e( __( 'Reserved Words', 'maps-for-contact-form-7' ) ); ?></legend>
+		<input type="text" name="values" class="values" id="<?php esc_attr_e( $args['content'] . '-reserved-query' ); ?>"></input>
 		</fieldset>
 	</td>
 	</tr>
 
 	<tr>
-	<th scope="row"><?php echo esc_html( __( 'Place Types', 'maps-for-contact-form-7' ) ); ?></th>
+	<th scope="row"><?php esc_html_e( __( 'Place Types', 'maps-for-contact-form-7' ) ); ?></th>
 	<td>
 		<fieldset>
-		<legend class="screen-reader-text"><?php echo esc_html( __( 'Place Types', 'maps-for-contact-form-7' ) ); ?></legend>
+		<legend class="screen-reader-text"><?php esc_html_e( __( 'Place Types', 'maps-for-contact-form-7' ) ); ?></legend>
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/modules/place_types.php';
 		foreach ( $place_types as $place_type ) {
 			?>
-			<label><input type="checkbox" name="place_type_<?php echo $place_type; ?>" class="option" id="<?php echo esc_attr( $args['content'] . '-place-type-<?php echo $place_type; ?>' ); ?>"></input>
+			<label><input type="checkbox" name="place_type_<?php echo $place_type; ?>" class="option" id="<?php esc_attr_e( $args['content'] . '-place-type-<?php echo $place_type; ?>' ); ?>"></input>
 			<?php
-			echo esc_html( maps_for_cf7_get_place_type_label( $place_type ) );
+			esc_html_e( maps_for_cf7_get_place_type_label( $place_type ) );
 			?>
 			</label>
 		<?php
@@ -343,7 +343,7 @@ function maps_for_cf7_tag_generator_place( $contact_form, $args = '' ) {
 	<input type="text" name="place" class="tag code" readonly="readonly" onfocus="this.select()" />
 
 	<div class="submitbox">
-	<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'contact-form-7' ) ); ?>" />
+	<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( __( 'Insert Tag', 'contact-form-7' ) ); ?>" />
 	</div>
 
 	<br class="clear" />

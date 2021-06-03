@@ -13,8 +13,8 @@ class MAPS_FOR_CF7_Post_List_Table extends WP_List_Table
 		parent::__construct(
 			array(
 				'singular' => 'maps_for_contact_form_7',
-				'plural'   => 'maps_for_contact_form_7s',
-				'ajax'     => false
+				'plural' => 'maps_for_contact_form_7s',
+				'ajax' => false
 			)
 		);
 	}

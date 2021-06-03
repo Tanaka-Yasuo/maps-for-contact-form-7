@@ -40,7 +40,7 @@ class MAPS_FOR_CF7_Menu_Page {
         	?>
             		<div class="wrap">
                 		<div id="icon-users" class="icon32"></div>
-                		<h2><?php echo esc_html( __( 'Contact Forms List With Places', 'maps-for-contact-form-7' ) ); ?></h2>
+                		<h2><?php esc_html_e( __( 'Contact Forms List With Places', 'maps-for-contact-form-7' ) ); ?></h2>
                 		<?php $list_forms->display(); ?>
             		</div>
         	<?php
@@ -78,10 +78,8 @@ class MAPS_FOR_CF7_Menu_Page {
 		$tags = $contact_form->scan_form_tags();
 		?>
 		<div class="wrap">
-		<h3><?php echo esc_html( urldecode( $contact_form->title() ) ); ?><h3>
+		<h3><?php esc_html_e( urldecode( $contact_form->title() ) ); ?><h3>
 		<?php
-foreach ( $tags as $tag ) {
-}
 		foreach( $posted_data as $name => $values ) {
 			$tag = MAPS_FOR_CF7_ContactForm::get_tag(
 				$tags,
@@ -102,7 +100,7 @@ foreach ( $tags as $tag ) {
 			}
 			?>
 			<p>
-			<b><?php echo esc_html( $name ); ?></b>: <?php echo esc_html( $value ); ?>
+			<b><?php esc_html_e( $name ); ?></b>: <?php esc_html_e( $value ); ?>
 			</p>
 			<?php
 		}

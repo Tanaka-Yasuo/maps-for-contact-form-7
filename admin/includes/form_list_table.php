@@ -17,14 +17,14 @@ class MAPS_FOR_CF7_Form_List_Table extends WP_List_Table
 		$settings = $options->get_option();
 		$form_ids = $settings[ MAPS_FOR_CF7_Options::form_ids ];
 
-		$columns	 = $this->get_columns();
-		$hidden	  = $this->get_hidden_columns();
-		$items		= $this->table_items();
-		$perPage	 = 10;
+		$columns = $this->get_columns();
+		$hidden	= $this->get_hidden_columns();
+		$items= $this->table_items();
+		$perPage = 10;
 
 		$this->set_pagination_args( array(
 			'total_items' => count( $form_ids ),
-			'per_page'	=> 10,
+			'per_page' => 10,
 		) );
 
 		$this->_column_headers = array($columns, $hidden );

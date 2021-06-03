@@ -134,7 +134,7 @@ class MAPS_FOR_CF7_SelectValues {
 				}
 				?>
 		 		html += '<button class="<?php esc_attr_e( implode( ' ', $classes ) ); ?>">';
-		 		html += "<?php echo esc_html( __( 'remove', 'maps-for-contact-form-7' ) ); ?>";
+		 		html += "<?php esc_html_e( __( 'remove', 'maps-for-contact-form-7' ) ); ?>";
 		 		html += '</button>';
 		 		html += '<input type="hidden" value="' + candidate.value + '" name="<?php esc_attr_e( $this->name ); ?>" >';
 		 		html += '</input>';

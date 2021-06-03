@@ -102,20 +102,20 @@ class MAPS_FOR_CF7_Options {
 			$selected = ( $language == $settings[ self::language ] ) ?
 			'selected' : '';
 			?>
-			<option value="<?php echo $language; ?>" <?php echo $selected; ?>><?php echo $language; ?></option>
+			<option value="<?php echo $language; ?>" <?php echo $selected; ?>><?php esc_attr_e( $language ); ?></option>
 			<?php
 		}
 		$language = $settings[ self::language ];
 		if ( !in_array( $language, self::$languages ) ) {
 			?>
-			<option value="<?php echo esc_attr( $language ); ?>" selected><?php echo $language; ?></option>
+			<option value="<?php esc_attr_e( $language ); ?>" selected><?php esc_attr_e( $language ); ?></option>
 			<?php
 		}
 		?>
 		</select>
 		<input type="text" class="maps-for-cf7-option-add" >
 		<button>
-        		<?php echo esc_html( __( 'add', 'maps-for-cf7' ) ); ?>
+        		<?php esc_html_e( __( 'add', 'maps-for-cf7' ) ); ?>
         	</button>
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';
@@ -129,20 +129,20 @@ class MAPS_FOR_CF7_Options {
 			$selected = ( $region == $settings[ self::region ] ) ?
 			 'selected' : '';
 			?>
-			<option value="<?php echo $region; ?>" <?php echo $selected; ?>><?php echo $region; ?></option>
+			<option value="<?php echo $region; ?>" <?php echo $selected; ?>><?php esc_attr_e( $region ); ?></option>
 			<?php
 		}
 		$region = $settings[ self::region ];
 		if ( !in_array( $region, self::$regions ) ) {
 			?>
-			<option value="<?php echo esc_attr( $region ); ?>" selected><?php echo $region; ?></option>
+			<option value="<?php esc_attr_e( $region ); ?>" selected><?php esc_attr_e( $region ); ?></option>
 			<?php
 		}
 		?>
 		</select>
 		<input type="text" class="maps-for-cf7-option-add" >
 		<button>
-        		<?php echo esc_html( __( 'add', 'maps-for-cf7' ) ); ?>
+        		<?php esc_html_e( __( 'add', 'maps-for-cf7' ) ); ?>
         	</button>
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';
@@ -203,7 +203,7 @@ class MAPS_FOR_CF7_Options {
 			<?php
 			require_once(ABSPATH . 'wp-admin/options-head.php');
 			?>
-			<h1><?php echo esc_html( $GLOBALS['title'] ); ?></h1>
+			<h1><?php esc_html_e( $GLOBALS['title'] ); ?></h1>
 			<form method="post" action="options.php">
 				<?php
 				wp_title();
