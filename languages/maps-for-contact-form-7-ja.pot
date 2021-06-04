@@ -114,7 +114,7 @@ msgstr "小学校"
 
 #: modules/place.php:338
 msgid "place_type_secondary_school"
-msgstr "高校"
+msgstr "中学・高校"
 
 #: modules/place.php:338
 msgid "place_type_school"
