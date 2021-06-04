@@ -141,14 +141,22 @@ function maps_for_contact_form_7_initialize() {
                         setMarkers( shortcodeElement, map );
                     } );
                 } );
+                map.addListener( 'maptypeid_changed', function() {
+                    for ( var i = 0; i < markers.length; ++i ) {
+                        var marker = markers[ i ];
+			var label = marker.getLabel();
 
+			label.className = getMarkerLabelClassName();
+			marker.setLabel( label );
+                    }
+		} );
                 function resetMarkers() {
                     for ( var i = 0; i < markers.length; ++i ) {
                         var marker = markers[ i ];
 
                         marker.setMap( null );
                     }
-                           markers = [];
+                    markers = [];
                 }
                 function setMarkers( shortcodeElement, map ) {
                     console.log( 'setMarkers' );
@@ -177,7 +185,11 @@ function maps_for_contact_form_7_initialize() {
                                 var marker = new google.maps.Marker( {
                                     map: map,
                                     position: new google.maps.LatLng( markerInfo.lat, markerInfo.lng ),
-                                    label: markerInfo.name + '(' + markerInfo.count + ')',
+                                    label: {
+					text: markerInfo.name + '(' + markerInfo.count + ')',
+					className: getMarkerLabelClassName(),
+					color: '',
+				    },
                                 } ); 
 
                                 markers.push( marker );
@@ -202,6 +214,9 @@ function maps_for_contact_form_7_initialize() {
                     .fail( function( jqXHR, textStatus, errorThrown ) {
                     } );
                 }
+		function getMarkerLabelClassName() {
+			return 'maps-for-cf7-shortcode' + ' marker-label-' + map.getMapTypeId();
+		}
                 function setRank( shortcodeElement, map ) {
                     var query = {
                         bounds: map.getBounds().toJSON(),

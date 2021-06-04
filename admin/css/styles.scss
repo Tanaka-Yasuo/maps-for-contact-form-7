@@ -43,6 +43,19 @@
 	&.website {
 		margin-left: 0.5em;
 	}
+	&.marker-label-hybrid {
+		color          : #ffffff;
+		letter-spacing : 0.1em;                /* 文字間 */
+  		text-shadow    : 
+       			0.1em  0.1em 0.05em #003366,
+      			-0.1em  0.1em 0.05em #003366,
+       			0.1em -0.1em 0.05em #003366,
+      			-0.1em -0.1em 0.05em #003366,
+       			0.1em  0px 0.05em #003366,
+       			0px  0.1em 0.05em #003366,
+      			-0.1em  0px 0.05em #003366,
+       			0px -0.1em 0.05em #003366;        /* 文字の影 */
+	}
 }
 
 /* option */
