@@ -1,21 +1,44 @@
-/* line 3, styles.scss */
-.maps-for-cf7-shortcode {
-  width: 100%;
-}
-/* line 18, styles.scss */
-.maps-for-cf7-shortcode .maps-for-cf7-shortcode-map {
-  width: 90%;
-  height: 50vh;
-}
-
-/* line 23, styles.scss */
-.maps-for-cf7-candidates-label {
-  text-decoration: underline;
-}
-
-/* line 36, styles.scss */
-.maps-for-cf7-place-map {
+/* place  */
+/* line 13, styles.scss */
+.maps-for-cf7-place.map {
   width: 90%;
   height: 0vh;
   visibility: hidden;
+}
+
+/* shortcode  */
+/* line 21, styles.scss */
+.maps-for-cf7-shortcode {
+  width: 100%;
+}
+/* line 25, styles.scss */
+.maps-for-cf7-shortcode.form.radio-label {
+  font-weight: bold;
+}
+/* line 28, styles.scss */
+.maps-for-cf7-shortcode.forminput[type="checkbox"].map-radio {
+  margin-right: 0.5em;
+}
+/* line 32, styles.scss */
+.maps-for-cf7-shortcode.rank-label {
+  font-weight: bold;
+}
+/* line 39, styles.scss */
+.maps-for-cf7-shortcode.map {
+  width: 90%;
+  height: 50vh;
+}
+/* line 43, styles.scss */
+.maps-for-cf7-shortcode.website {
+  margin-left: 0.5em;
+}
+
+/* option */
+/* line 55, styles.scss */
+#maps-for-cf7-option-form-ids .maps-for-cf7-select-values.candidates-label {
+  text-decoration: underline;
+}
+/* line 62, styles.scss */
+#maps-for-cf7-option-form-ids .maps-for-cf7-select-values.targets-label {
+  text-decoration: underline;
 }

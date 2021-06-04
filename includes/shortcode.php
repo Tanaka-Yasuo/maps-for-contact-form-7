@@ -58,31 +58,33 @@ class MAPS_FOR_CF7_Shortcode {
 				break;
 			}
 		}
+		$class = 'maps-for-cf7-shortcode';
 		?>
-		<div class="maps-for-cf7-shortcode">
+		<div class="<?php esc_attr_e( $class ); ?>">
 		<?php
-		$this->html_taxonomies( $form_id, $taxonomies );
-		$this->html_rank();
-		$this->html_map();
+		$this->html_taxonomies( $class, $form_id, $taxonomies );
+		$this->html_rank( $class );
+		$this->html_map( $class );
 		?>
 		</div>
 		<?php
         }
-	public function html_taxonomies( $form_id, $taxonomies ) {
+	public function html_taxonomies( $class, $form_id, $taxonomies ) {
+		$class .= ' form';
 		?>
-		<form class="maps-for-cf7-shortcode-form" data-form-id="<?php esc_attr_e( $form_id ); ?>">
+		<form class="<?php esc_attr_e( $class ); ?>" data-form-id="<?php esc_attr_e( $form_id ); ?>">
 		<?php
 		foreach( $taxonomies as $taxonomy ) {
 			$tag = $taxonomy[ 'tag' ];
 			?>
 			<p>
-				<label class="maps-for-cf7-shortcode-radio-label">
+				<label class="<?php esc_attr_e( $class . ' radio-label' ); ?>">
 				<?php esc_html_e( $tag->name ); ?>
 				</label>
 				<?php
                         	switch ( $tag[ 'basetype' ] ) {
 				case 'radio':
-					$this->html_tag_radio( $form_id, $taxonomy );
+					$this->html_tag_radio( $class, $form_id, $taxonomy );
 					break;
 				default:
 					break;
@@ -95,7 +97,7 @@ class MAPS_FOR_CF7_Shortcode {
 		</form>
 		<?php
 	}
-	private function html_tag_radio( $form_id, $taxonomy ) {
+	private function html_tag_radio( $class, $form_id, $taxonomy ) {
 		$tag = $taxonomy[ 'tag' ];
 		$name = MAPS_FOR_CF7_Taxonomy::get_name( $form_id, $tag );
 		$raw_values = $tag[ 'raw_values' ];
@@ -103,11 +105,12 @@ class MAPS_FOR_CF7_Shortcode {
 		?>
 		<div>
 		<?php
+		$class .= ' map-radio';
 		for ( $i = 0; $i < count( $raw_values ); ++$i ) {
 			$raw_value = $raw_values[ $i ];
 			$label = $labels[ $i ];
 			?>
-			<input type="checkbox" class="maps-for-cf7-shortcode-map-radio" name="<?php esc_attr_e( $name ); ?>" value="<?php esc_attr_e( $raw_value ); ?>"><?php esc_html_e( $label ); ?>
+			<input type="checkbox" class="<?php esc_attr_e( $class ); ?>" name="<?php esc_attr_e( $name ); ?>" value="<?php esc_attr_e( $raw_value ); ?>"><?php esc_html_e( $label ); ?>
 			<br/>
 			<?php
 		}
@@ -115,31 +118,31 @@ class MAPS_FOR_CF7_Shortcode {
 		</div>
 		<?php
 	}
-	private function html_rank() {
+	private function html_rank( $class ) {
 		$options = MAPS_FOR_CF7_Options::get_instance();
 
                 $settings = $options->get_option();
                 $num_ranks = $settings[ MAPS_FOR_CF7_Options::num_ranks ];
 		if ( $num_ranks < 0 ) $num_ranks = 0;
 		?>
-		<label class="maps-for-cf7-shortcode-rank-label"><?php esc_html_e( __( 'Rank', 'maps-for-contact-form-7' ) ); ?></label>
+		<label class="<?php esc_attr_e( $class . ' rank-label' ); ?>"><?php esc_html_e( __( 'Rank', 'maps-for-contact-form-7' ) ); ?></label>
 		<div class="block">
 		<?php
 		for ( $i = 0; $i < $num_ranks; ++$i ) {
-			$class = 'rank-' . ( $i + 1 );
+			$class_no = ' rank-' . ( $i + 1 );
 			?>
-			<div class="maps-for-cf7-shortcode-map-rank <?php echo $class; ?>"></div>
+			<div class="<?php esc_attr_e( $class . ' map-rank' . $class_no ); ?>"></div>
 			<?php
 		}
 		?>
-		<div class="maps-for-cf7-shortcode-map-rank rank-more"></div>
+		<div class="<?php esc_attr_e( $class . ' rank-more' ); ?>"></div>
 		</div>
 		<?php
 	}
-	private function html_map() {
+	private function html_map( $class ) {
 		?>
-		<div class="maps-for-cf7-shortcode-map-block">
-			<div class="maps-for-cf7-shortcode-map" ></div>
+		<div class="<?php esc_attr_e( $class . ' map-block' ); ?>">
+			<div class="<?php esc_attr_e( $class . ' map' ); ?>" ></div>
       		</div>
 		<?php
 	}

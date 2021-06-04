@@ -189,7 +189,7 @@ function maps_for_cf7_place_form_tag_handler( $tag ) {
 		$html .= $item;
 	}
 */
-	$html = '<input type="text" class="' . esc_attr( $class ) . '" placeholder="' . esc_attr( __( 'Input keywords', 'maps-for-contact-form-7' ) ) . '" data-reserved-query="' . $reserved_query . '">';
+	$html = '<input type="text" class="' . esc_attr( $class . ' keywords' ) . '" placeholder="' . esc_attr( __( 'Input keywords', 'maps-for-contact-form-7' ) ) . '" data-reserved-query="' . $reserved_query . '">';
 	$html .= '<br/>';
 
 	$place_type_options = $tag->get_all_match_options( '/place_type_\w+/' );
@@ -201,7 +201,7 @@ function maps_for_cf7_place_form_tag_handler( $tag ) {
 		}
 		$place_types[] = 'none';
 		
-		$html .= sprintf( '<span>%1$s:</span>', esc_html( __( 'Place Types', 'maps-for-contact-form-7' ) ) );
+		$html .= sprintf( '<span class="%1$s">%2$s:</span>', esc_attr( $class . ' place-type-label' ), esc_html( __( 'Place Types', 'maps-for-contact-form-7' ) ) );
 		$select_atts = array();
         	$select_atts['class'] = esc_attr( $class . ' place-type' );	
 
@@ -214,7 +214,7 @@ function maps_for_cf7_place_form_tag_handler( $tag ) {
 		$html .= '</select>';
 		$html .= '</br>';
 	}
-	$html .= sprintf( '<span>%1$s:</span>', esc_html( __( 'Place', 'maps-for-contact-form-7' ) ) );
+	$html .= sprintf( '<span class="%1$s">%2$s:</span>', esc_attr( $class . ' place-label' ), esc_html( __( 'Place', 'maps-for-contact-form-7' ) ) );
 	$select_atts = array();
         $select_atts['class'] = esc_attr( $class . ' place' );	
         $select_atts['name'] = $tag->name;
@@ -234,7 +234,7 @@ function maps_for_cf7_place_form_tag_handler( $tag ) {
 		'<span class="wpcf7-form-control-wrap %1$s"><span %2$s>%3$s</span>%4$s</span>',
 		sanitize_html_class( $tag->name ), $atts, $html, $validation_error
 	);
-	$html .= '<div class="maps-for-cf7-place-map"/>';
+	$html .= '<div class="' . esc_attr( $class . ' map' ) . '"/>';
 	$html .= '</div>';
 
 	return $html;

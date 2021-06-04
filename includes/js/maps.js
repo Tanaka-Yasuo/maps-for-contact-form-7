@@ -22,7 +22,7 @@ function maps_for_contact_form_7_initialize() {
         function initPlace( zoom, lat, lng ) {
             $( 'input.maps-for-cf7-place' ).each( function( index, element ) {
                 var map = new google.maps.Map(
-                    $( element ).closest( 'p' ).next( '.maps-for-cf7-place-map' ).get(0),
+                    $( element ).closest( 'p' ).next( '.maps-for-cf7-place.map' ).get(0),
                     {
                         zoom: zoom,
                         center: new google.maps.LatLng( lat, lng ),
@@ -98,7 +98,7 @@ function maps_for_contact_form_7_initialize() {
 
         // functions of maps_for_contact_form_7 shortcode
         function initMap( zoom, lat, lng ) {
-            $( '.maps-for-cf7-shortcode' ).each( function( index, shortcodeElement ) {
+            $( '[class="maps-for-cf7-shortcode"]' ).each( function( index, shortcodeElement ) {
                 var markers = [];
 
                 var JAPAN_BOUNDS = {
@@ -108,7 +108,7 @@ function maps_for_contact_form_7_initialize() {
                         east: 150.0,
                   };
                 var map = new google.maps.Map(
-                    $( shortcodeElement ).find( '.maps-for-cf7-shortcode-map' ).get( 0 ),
+                    $( shortcodeElement ).find( '.map' ).get( 0 ),
                     {
                         zoom: zoom,
                         center: new google.maps.LatLng( lat, lng ),
@@ -279,7 +279,7 @@ function maps_for_contact_form_7_initialize() {
                             function ( place, status ) {
                                 if ( status == google.maps.places.PlacesServiceStatus.OK ) {
 				    if ( place.website ) {
-					$( elem ).append( '<a href="' + place.website + '" target="_blank" rel="noopener" class="maps-for-cf7-rank-website">' + mapsForContactForm7Shortcode.homepage_label + '</a>' );
+					$( elem ).append( '<a href="' + place.website + '" target="_blank" rel="noopener" class="maps-for-cf7-shortcode website">' + mapsForContactForm7Shortcode.homepage_label + '</a>' );
 				    }
 				}
 			    }

@@ -1,45 +1,73 @@
-.maps-for-cf7-option-add {
+/* place  */
+.maps-for-cf7-place {
+	&.keywords {
+	}
+	&.place-type-label {
+	}
+	&.place-type {
+	}
+	&.place-label {
+	}
+	&.place {
+	}
+	&.map {
+		width: 90%;
+		height: 0vh;
+		visibility: hidden;
+	}
 }
+
+/* shortcode  */
 .maps-for-cf7-shortcode {
 	width: 100%;
 
-	.maps-for-cf7-shortcode-form {
+	&.form {
+		&.radio-label {
+			font-weight: bold;
+		}
+		&input[type="checkbox"].map-radio {
+			margin-right: 0.5em;
+		}
 	}
-	.maps-for-cf7-shortcode-radio-label {
+	&.rank-label {
+		font-weight: bold;
 	}
-	.maps-for-cf7-shortcode-radio {
+	&.map-rank {
 	}
-	.maps-for-cf7-shortcode-rank-label {
+	&.map-block {
 	}
-	.maps-for-cf7-shortcode-map-rank {
-	}
-	.maps-for-cf7-shortcode-map-block {
-	}
-	.maps-for-cf7-shortcode-map {
+	&.map {
 		width: 90%;
 		height: 50vh;
 	}
+	&.website {
+		margin-left: 0.5em;
+	}
 }
-.maps-for-cf7-candidates-label {
-	text-decoration: underline;
+
+/* option */
+.maps-for-cf7-option {
+	&.add {
+	}
 }
-.maps-for-cf7-candidate-list {
-}
-.maps-for-cf7-add-candidate-button {
-}
-.maps-for-cf7-targets-label {
-}
-.maps-for-cf7-target-list {
-}
-.maps-for-cf7-remove-target-button {
-}
-.maps-for-cf7-place-map {
-	width: 90%;
-	height: 0vh;
-	visibility: hidden;
-}
-input.maps-for-cf7-place {
-}
-select.maps-for-cf7-place {
+#maps-for-cf7-option-form-ids {
+	.maps-for-cf7-select-values {
+		&.candidates-label {
+			text-decoration: underline;
+		}
+		&.candidates-list {
+		}
+		&.add-candidate-button {
+		}
+		&.targets-label {
+			text-decoration: underline;
+		}
+		&.targets-list {
+		}
+		&.target-label {
+		}
+		&.remove-target-button {
+		}
+	}
 }
 
