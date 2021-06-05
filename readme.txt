@@ -18,9 +18,9 @@ The Maps for Contact Form 7 collects data with place and analyze the data with g
 Preparation:
    (1) get google map api key and set the key in the settings of the Maps for Contact Form 7.  recommend that api key should be restricted by referer.
    (2) set google map language and region in the settings of the Maps for Contact Form 7.
-   (3) to collect data, put place field on the Contact Form 7 form and add the form to target forms in the settings of the Maps for Contact Form 7. The place filed customized reserverd keywords and place types.  The reserverd keywords and place types are used in textsearch google places api.
+   (3) to collect data, put place field on the Contact Form 7 form and add the form to target forms in the settings of the Maps for Contact Form 7. The place field is customized by reserverd keywords and place types.  The reserverd keywords and place types are used in textsearch google places api.
    (4) add the Contact Form 7 form in Pages menu in wordpress. 
-   (5) add Maps for Contact Form 7 shortcode( 'maps-for-contact-form-7' ) with the form id of Contact Form 7 form. examples is the follwoing.
+   (5) add Maps for Contact Form 7 shortcode( 'maps-for-contact-form-7' ) with the form id of Contact Form 7 form in Pages menu in wordpress.  Examples is the follwoing.
    	'[maps-for-contact-form-7 form-id="the form id"]'
 
 Collect data:
@@ -42,6 +42,9 @@ Analyze data:
 1. screenshot-1.png
 
 == Changelog ==
+= 1.0.2 =
+   1. correct typos.
+
 = 1.0.1 =
    1. fix bug of settings that display target forms duplicately.
    2. change css selector.
