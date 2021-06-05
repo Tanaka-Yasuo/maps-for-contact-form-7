@@ -115,7 +115,7 @@ class MAPS_FOR_CF7_Options {
 		</select>
 		<input type="text" class="maps-for-cf7-option-add" >
 		<button>
-        		<?php esc_html_e( __( 'add', 'maps-for-cf7' ) ); ?>
+        		<?php esc_html_e( __( 'add', 'maps-for-contact-form-7' ) ); ?>
         	</button>
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';
@@ -142,7 +142,7 @@ class MAPS_FOR_CF7_Options {
 		</select>
 		<input type="text" class="maps-for-cf7-option-add" >
 		<button>
-        		<?php esc_html_e( __( 'add', 'maps-for-cf7' ) ); ?>
+        		<?php esc_html_e( __( 'add', 'maps-for-contact-form-7' ) ); ?>
         	</button>
 		<?php
 		require_once MAPS_FOR_CF7_PLUGIN_DIR . '/includes/add-option.php';

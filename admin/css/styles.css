@@ -51,3 +51,7 @@
 #maps-for-cf7-option-form-ids .maps-for-cf7-select-values.targets-label {
   text-decoration: underline;
 }
+/* line 80, styles.scss */
+#maps-for-cf7-option-form-ids .maps-for-cf7-select-values.target-label {
+  margin-right: 0.5em;
+}

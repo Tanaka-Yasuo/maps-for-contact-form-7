@@ -50,7 +50,6 @@ class MAPS_FOR_CF7_SelectValues {
 			?>
 			<select class="<?php esc_attr_e( implode( ' ', $classes ) ); ?>">
 			</select>
-			<br/>
 			<?php
 			$classes = array(
 					'maps-for-cf7-select-values',
