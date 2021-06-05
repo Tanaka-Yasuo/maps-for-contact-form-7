@@ -3,7 +3,7 @@
  * Plugin Name: Maps for Contact Form 7
  * Plugin URI: https://localohost/
  * Description: add place field on contace-7-form
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: YasuoTanaka
  * Author URI: https://crowdworks.jp/
  * Text Domain: maps-for-contact-form-7
